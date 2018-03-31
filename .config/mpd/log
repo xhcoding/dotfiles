@@ -1,0 +1,66 @@
+Mar 22 23:10 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Mar 22 23:10 : client: [0] opened from 127.0.0.1:58080
+Mar 22 23:10 : client: [1] opened from [::1]:43890
+Mar 22 23:10 : client: [1] closed
+Mar 22 23:10 : client: [2] opened from [::1]:43892
+Mar 22 23:10 : client: [2] closed
+Mar 22 23:12 : client: [3] opened from [::1]:43964
+Mar 22 23:12 : client: [3] closed
+Mar 22 23:13 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Mar 22 23:14 : client: [0] opened from 127.0.0.1:58188
+Mar 22 23:14 : client: [1] opened from [::1]:43998
+Mar 22 23:14 : client: [1] closed
+Mar 22 23:16 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Mar 22 23:16 : client: [0] opened from 127.0.0.1:40966
+Mar 22 23:17 : client: [1] opened from [::1]:46280
+Mar 22 23:17 : client: [1] closed
+Mar 22 23:18 : client: [2] opened from [::1]:46462
+Mar 22 23:19 : client: [2] closed
+Mar 22 23:19 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Mar 22 23:19 : client: [0] opened from 127.0.0.1:41214
+Mar 22 23:19 : client: [1] opened from [::1]:46526
+Mar 22 23:20 : client: [1] closed
+Mar 22 23:24 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Mar 22 23:24 : client: [0] opened from 127.0.0.1:41444
+Mar 22 23:24 : client: [1] opened from [::1]:46764
+Mar 22 23:24 : client: [1] closed
+Mar 22 23:24 : client: [2] opened from [::1]:46770
+Mar 22 23:24 : client: [2] closed
+Mar 22 23:25 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Mar 22 23:25 : client: [0] opened from 127.0.0.1:41486
+Mar 22 23:25 : client: [1] opened from [::1]:46806
+Mar 22 23:25 : client: [1] closed
+Mar 22 23:25 : client: [2] opened from [::1]:46812
+Mar 22 23:25 : client: [2] closed
+Mar 22 23:26 : client: [3] opened from [::1]:46842
+Mar 22 23:26 : client: [3] closed
+Mar 22 23:28 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Mar 22 23:28 : client: [0] opened from 127.0.0.1:55310
+Mar 22 23:28 : client: [1] opened from [::1]:44928
+Mar 22 23:28 : client: [1] closed
+Mar 22 23:28 : client: [2] opened from [::1]:44930
+Mar 22 23:28 : client: [2] closed
+Mar 22 23:29 : client: [3] opened from [::1]:44932
+Mar 22 23:29 : client: [3] closed
+Mar 22 23:29 : client: [4] opened from [::1]:44934
+Mar 22 23:29 : client: [4] closed
+Mar 22 23:29 : client: [5] opened from [::1]:44936
+Mar 22 23:29 : client: [5] closed
+Mar 22 23:29 : client: [6] opened from [::1]:44938
+Mar 22 23:29 : client: [6] closed
+Mar 23 23:13 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Mar 23 23:13 : client: [0] opened from 127.0.0.1:53864
+Mar 23 23:13 : client: [1] opened from [::1]:51554
+Mar 23 23:13 : client: [1] closed
+Mar 23 23:13 : client: [2] opened from [::1]:51556
+Mar 23 23:14 : client: [2] closed
+Mar 23 23:17 : client: [3] opened from [::1]:51626
+Mar 23 23:17 : client: [3] closed
+Mar 23 23:20 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Mar 23 23:21 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Mar 23 23:22 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Mar 23 23:22 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Mar 23 23:22 : exception: Failed to read mixer for 'My ALSA Device': no such mixer control: PCM
+Mar 23 23:26 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Mar 23 23:26 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Mar 23 23:26 : exception: Failed to read mixer for 'mpd alsamixer-output': no such mixer control: PCM

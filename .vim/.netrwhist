@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/xhcoding/.Xresources'
+let g:netrw_dirhist_2='/etc'
+let g:netrw_dirhist_3='/etc/systemd/network'
+let g:netrw_dirhist_4='/home/xhcoding/.emacs.d/auto-save-list'

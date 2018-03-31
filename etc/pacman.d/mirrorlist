@@ -1,0 +1,9 @@
+##
+## Arch Linux repository mirrorlist
+## Filtered by mirror score from mirror status page
+## Generated on 2018-03-01
+##
+
+#China 
+Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+
