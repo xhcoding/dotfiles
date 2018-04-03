@@ -3,4 +3,8 @@
 
 
       ;; global keybinds
-      :gnvime "<f7>" #'compile)
+      :gnvime "<f7>"      #'compile
+      :n      "RET"       #'next-buffer
+      :n      "M-RET"     #'previous-buffer
+      :i      "M-/"       #'+company/complete
+      )
