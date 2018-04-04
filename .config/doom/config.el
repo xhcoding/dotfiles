@@ -42,7 +42,6 @@
   (setq lsp-project-blacklist '("^/usr/")
         lsp-highlight-symbol-at-point nil))
 
-
 (def-package! lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
   :config

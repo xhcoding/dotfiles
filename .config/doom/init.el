@@ -24,6 +24,7 @@
                    )
 
 (setq doom-line-numbers-style nil)
+(setq org-src-fontify-natively nil)
 
 (doom!
  :feature

@@ -2,8 +2,8 @@
 ;;; private/my-lang/packages.el
 
 
-
 (package! cquery)
+
 
 (package! lsp-python :recipe (:fetcher github :repo "emacs-lsp/lsp-python"))
 

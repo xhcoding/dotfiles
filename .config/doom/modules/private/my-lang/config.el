@@ -15,6 +15,7 @@
   (set! :company-backend 'c++-mode '(company-lsp))
   )
 
+
 (def-package! lsp-python
   :after python
   :init
