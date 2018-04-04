@@ -23,16 +23,24 @@
 		           (my-default-font)
 		         )))
 
+(if window-system
+    (my-default-font))
 
 ;; Reconfigure packages
 (after! evil-escape
   (setq evil-escape-key-sequence "fd"))
 
+(require 'company)
 (after! company
   (setq company-idle-delay 0.2
         company-minimum-prefix-length 2
         company-show-numbers t
-        company-backends '(company-capf company-dabbrev company-files)))
+        company-backends '(( company-files company-capf company-dabbrev))))
+
+(def-package! lsp-mode
+  :config
+  (setq lsp-project-blacklist '("^/usr/")
+        lsp-highlight-symbol-at-point nil))
 
 
 (def-package! lsp-ui
@@ -41,7 +49,9 @@
   (setq lsp-ui-sideline-enable nil
         lsp-ui-sideline-show-symbol nil
         lsp-ui-sideline-show-symbol nil
-        lsp-ui-sideline-ignore-duplicate t)
+        lsp-ui-sideline-ignore-duplicate t
+        lsp-ui-doc-max-width 50
+        )
 
   (map! :map lsp-ui-mode-map
         [remap xref-find-definitions] #'lsp-ui-peek-find-definitions
@@ -55,4 +65,11 @@
         ))
 
 
+(set! :popup "^\\*helpful" '((size . 0.4)))
+(set! :popup "^\\*info\\*$" '((size . 0.4)))
 
+
+(def-package! auto-save
+  :load-path my-site-lisp-dir
+  :config
+  (setq auto-save-slient t))

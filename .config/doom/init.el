@@ -1,5 +1,10 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
+
+
+(defvar my-site-lisp-dir (expand-file-name "~/.config/doom/site-lisp"))
+(defvar my-auto-save-timer nil)
+
 ;; package archives
 (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
                          ("melpa" . "http://elpa.emacs-china.org/melpa/")
@@ -27,7 +32,6 @@
   +defaults)       ; default popup rules
  (evil +everywhere); come to the dark side, we have cookies
  snippets          ; my elves. They type so I don't have to
- file-templates    ; auto-snippets for empty files
  syntax-checker    ; tasing you for every semicolon you forget
  look-up
 
@@ -49,6 +53,7 @@
  dired             ; making dired pretty [functional]
  magit
  pdf               ; pdf enhancements
+ term              ; terminals in Emacs
 
  :lang
  cc                ; C/C++/Obj-C madness
@@ -64,6 +69,9 @@
   +publish)        ; Emacs+Org as a static site generator
  plantuml          ; diagrams for confusing people more
 
+ :app
+ (rss +org)        ; emacs as an RSS reader
+
  :config
  ;; The default module set reasonable defaults for Emacs. It also provides
  ;; a Spacemacs-inspired keybinding scheme, a custom yasnippet library,
@@ -74,6 +82,6 @@
  :private
  my-lang
  my-blog
-)
+ )
 
 

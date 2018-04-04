@@ -1,2 +1,3 @@
 /etc/pacman.d/gnupg
 *.elc
+*~
