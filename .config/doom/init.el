@@ -4,11 +4,20 @@
 
 (defvar my-site-lisp-dir (expand-file-name "~/.config/doom/site-lisp"))
 (defvar my-auto-save-timer nil)
+(defvar my-yas-snipper-dir (expand-file-name "~/.config/doom/snippets"))
+
 
 ;; package archives
 (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
                          ("melpa" . "http://elpa.emacs-china.org/melpa/")
 			             ("org"   . "http://elpa.emacs-china.org/org/")))
+
+
+(setq doom-line-numbers-style nil)
+
+(setq user-full-name "xhcoding"
+      user-mail-address "xhcoding@163.com")
+
 
 ;; disable some packages
 (disable-packages! smex
@@ -22,9 +31,6 @@
                    anaconda-mode
                    company-anaconda
                    )
-
-(setq doom-line-numbers-style nil)
-(setq org-src-fontify-natively nil)
 
 (doom!
  :feature

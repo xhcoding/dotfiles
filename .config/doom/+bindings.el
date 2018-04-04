@@ -7,6 +7,10 @@
       :n      "RET"       #'next-buffer
       :n      "M-RET"     #'previous-buffer
       :i      "M-/"       #'+company/complete
+      :i      "C-f"       #'forward-char
+      :i      "C-b"       #'backward-char
+      :i      "C-n"       #'next-line
+      :i      "C-p"       #'previous-line
       (:leader
         (:desc "toggle" :prefix "t"
           :desc "transparency"     :n  "t"    #'toggle-transparency

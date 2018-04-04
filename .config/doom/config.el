@@ -2,8 +2,6 @@
 (load! +bindings)
 
 
-(add-hook! 'doom-post-init-hook 'doom|disable-line-numbers)
-
 ;; font
 (defun my-default-font()
   (interactive)
@@ -72,3 +70,6 @@
   :load-path my-site-lisp-dir
   :config
   (setq auto-save-slient t))
+
+(after! emacs-snippets
+  (add-to-list 'yas-snippet-dirs my-yas-snipper-dir))
