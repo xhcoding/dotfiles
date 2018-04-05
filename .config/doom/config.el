@@ -73,3 +73,4 @@
 
 (after! emacs-snippets
   (add-to-list 'yas-snippet-dirs my-yas-snipper-dir))
+

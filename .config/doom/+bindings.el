@@ -11,8 +11,12 @@
       :i      "C-b"       #'backward-char
       :i      "C-n"       #'next-line
       :i      "C-p"       #'previous-line
+
       (:leader
         (:desc "toggle" :prefix "t"
           :desc "transparency"     :n  "t"    #'toggle-transparency
           :desc "auto save"        :n  "a"    #'toggle-auto-save
-      )))
+          )
+        (:desc "search" :prefix "s"
+          :desc "replace"          :n  "r"    #'vr/replace)
+        ))

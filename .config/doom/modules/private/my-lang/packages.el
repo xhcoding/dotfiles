@@ -4,6 +4,7 @@
 
 (package! cquery)
 
+(package! clang-format)
 
 (package! lsp-python :recipe (:fetcher github :repo "emacs-lsp/lsp-python"))
 
