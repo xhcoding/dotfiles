@@ -24,9 +24,9 @@
                  (member-init-intro . +)
                  (topmost-intro . 0)
                  (arglist-cont-nonempty . +)))))
-  (setq c-default-style "my-cc")
-  (add-hook 'c-mode-common-hook (lambda () (c-set-style "my-cc")))
-  )
+  (setq c-default-style "my-cc"
+        c-tab-always-indent t)
+  (add-hook 'c-mode-common-hook (lambda () (c-set-style "my-cc"))))
 
 (def-package! clang-format
   :commands (clang-format-region)

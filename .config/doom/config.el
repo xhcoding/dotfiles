@@ -1,28 +1,9 @@
 
 (load! +bindings)
+(load! +ui)
 
 
-;; font
-(defun my-default-font()
-  (interactive)
 
-  ;; english font
-  (set-face-attribute 'default nil :font (format   "%s:pixelsize=%d" "Source Code Pro" 17))
-  ;; chinese font
-  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font)
-		              charset
-		              (font-spec :family "WenQuanYi Micro Hei Mono" :size 20))))
-
-(add-to-list 'after-make-frame-functions
-	         (lambda (new-frame)
-	           (select-frame new-frame)
-	           (if window-system
-		           (my-default-font)
-		         )))
-
-(if window-system
-    (my-default-font))
 
 ;; Reconfigure packages
 (after! evil-escape
@@ -32,8 +13,13 @@
 (after! company
   (setq company-idle-delay 0.2
         company-minimum-prefix-length 2
+        company-tooltip-limit 10
         company-show-numbers t
-        company-backends '(( company-files company-capf company-dabbrev))))
+        company-backends '(( company-files company-capf company-dabbrev)))
+  (map! :map company-active-map
+        "M-g" #'company-abort
+        "M-d" #'company-next-page
+        "M-u" #'company-previous-page))
 
 (def-package! lsp-mode
   :config
@@ -64,13 +50,28 @@
 
 (set! :popup "^\\*helpful" '((size . 0.4)))
 (set! :popup "^\\*info\\*$" '((size . 0.4)))
+(set! :popup "^\\*eww\\*$"  '((size . 0.5)))
 
 
 (def-package! auto-save
-  :load-path my-site-lisp-dir
+  :load-path +my-site-lisp-dir
   :config
   (setq auto-save-slient t))
 
-(after! emacs-snippets
-  (add-to-list 'yas-snippet-dirs my-yas-snipper-dir))
+(def-package! visual-regexp
+  :defer t)
 
+(after! emacs-snippets
+  (add-to-list 'yas-snippet-dirs +my-yas-snipper-dir))
+
+
+(after! smartparens
+  (define-advice show-paren-function (:around (fn) fix-show-paren-function)
+      "Highlight enclosing parens"
+      (cond ((looking-at-p "\\s(") (funcall fn))
+	    (t (save-excursion
+		 (ignore-errors (backward-up-list))
+		 (funcall fn)))))
+  (sp-local-pair 'cc-mode "(" nil :actions nil)
+  (sp-local-pair 'cc-mode "[" nil :actions nil)
+  )
