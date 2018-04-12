@@ -57,6 +57,7 @@
 (set! :popup "^\\*helpful" '((size . 0.4)))
 (set! :popup "^\\*info\\*$" '((size . 0.4)))
 (set! :popup "^\\*eww\\*$"  '((size . 0.5)))
+(set! :popup "^\\*doom \\(?:term\\|eshell\\)"  '((size . 0.4)))
 
 
 (def-package! auto-save

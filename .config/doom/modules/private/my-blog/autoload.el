@@ -3,9 +3,10 @@
 ;;;###autoload
 (defun +my/open-org-octopress()
   (interactive)
-  (if (get-buffer "Octopress")
-      (switch-to-buffer "Octopress")
-    (org-octopress)))
+  (let ((buffer (get-buffer "Octopress")))
+    (if buffer
+        (switch-to-buffer buffer)
+      (org-octopress))))
 
 ;;;###autoload
 (defun +my-blog*export-blog-image-url(filename)
