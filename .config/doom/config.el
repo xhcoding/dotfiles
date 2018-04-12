@@ -1,13 +1,19 @@
-
+;;; config/private/+ui.el -*- lexical-binding: t; -*-
 (load! +bindings)
 (load! +ui)
-
-
 
 
 ;; Reconfigure packages
 (after! evil-escape
   (setq evil-escape-key-sequence "fd"))
+
+(after! org
+  (setq org-ellipsis " ▼ "
+        org-ditaa-jar-path doom-etc-dir)
+  (setcar (nthcdr 0 org-emphasis-regexp-components) " \t('\"{[:nonascii:]")
+  (setcar (nthcdr 1 org-emphasis-regexp-components) "- \t.,:!?;'\")}\\[[:nonascii:]")
+  (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+  (org-element-update-syntax))
 
 (require 'company)
 (after! company
@@ -59,7 +65,8 @@
   (setq auto-save-slient t))
 
 (def-package! visual-regexp
-  :defer t)
+  :config
+  (require 'visual-regexp))
 
 (after! emacs-snippets
   (add-to-list 'yas-snippet-dirs +my-yas-snipper-dir))
@@ -67,11 +74,16 @@
 
 (after! smartparens
   (define-advice show-paren-function (:around (fn) fix-show-paren-function)
-      "Highlight enclosing parens"
-      (cond ((looking-at-p "\\s(") (funcall fn))
-	    (t (save-excursion
-		 (ignore-errors (backward-up-list))
-		 (funcall fn)))))
+    "Highlight enclosing parens"
+    (cond ((looking-at-p "\\s(") (funcall fn))
+	      (t (save-excursion
+		       (ignore-errors (backward-up-list))
+		       (funcall fn)))))
   (sp-local-pair 'cc-mode "(" nil :actions nil)
   (sp-local-pair 'cc-mode "[" nil :actions nil)
   )
+
+(def-package! keyfreq
+  :config
+  (keyfreq-mode t)
+  (keyfreq-autosave-mode t))

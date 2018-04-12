@@ -48,6 +48,9 @@ bindsym $mod+Shift+q kill
 # run rofi
 bindsym $mod+d exec rofi -show run 
 
+bindsym $mod+p exec deepin-screenshot
+bindsym $mod+Shift+p exec deepin-screenshot -d 3
+
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -129,8 +132,8 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-bindsym $mod+u workspace $ws8
-bindsym $mod+g workspace $ws9
+bindsym $mod+g workspace $ws8
+bindsym $mod+u workspace $ws9
 bindsym $mod+m workspace $ws10
 
 # move focused container to workspace

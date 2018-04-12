@@ -14,8 +14,9 @@
 
       (:leader
         (:desc "toggle" :prefix "t"
-          :desc "transparency"     :n  "t"    #'+my/toggle-transparency
-          :desc "auto save"        :n  "a"    #'+my/toggle-auto-save
+          :desc "Transparency"     :n  "t"    #'+my/toggle-transparency
+          :desc "Auto save"        :n  "a"    #'+my/toggle-auto-save
+          :desc "Comment "         :n  "c"    #'comment-line
           )
         (:desc "search" :prefix "s"
           :desc "replace"          :n  "r"    #'vr/replace)

@@ -42,9 +42,7 @@
                        :diagnostics (:frequencyMs 5000)))
   (add-to-list 'projectile-globally-ignored-directories ".cquery_cached_index")
   (add-to-list 'projectile-globally-ignored-directories "build")
-  (require 'company-lsp)
-  (set! :company-backend 'c-mode '(company-lsp))
-  (set! :company-backend 'c++-mode '(company-lsp))
+  (set! :company-backend '(c-mode c++-mode) '(company-lsp))
   )
 
 
@@ -75,3 +73,8 @@
   (add-hook 'rjsx-mode #'lsp-javascript-typescript-enable) ;; for rjsx-mode support
   )
 
+(after! latex
+  (add-hook 'LaTeX-mode-hook
+            (lambda()
+              (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1 %(mode)%' %t" TeX-run-TeX nil t))
+              (setq TeX-command-default "XeLaTeX"))))

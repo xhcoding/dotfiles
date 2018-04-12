@@ -24,25 +24,25 @@
   (interactive)
   (save-excursion
     (if(region-active-p)
-	(progn
-	  (indent-region (region-beginning) (region-end))
-	  (message "Indented selected region."))
+	    (progn
+	      (indent-region (region-beginning) (region-end))
+	      (message "Indented selected region."))
       (progn
-	(+my/indent-buffer)
-	(message "Indented buffer.")))))
+	    (+my/indent-buffer)
+	    (message "Indented buffer.")))))
 
 ;;;###autoload
 (defun +my/toggle-transparency ()
-   (interactive)
-   (let ((alpha (frame-parameter nil 'alpha)))
-     (set-frame-parameter
-      nil 'alpha
-      (if (eql (cond ((numberp alpha) alpha)
-                     ((numberp (cdr alpha)) (cdr alpha))
-                     ;; Also handle undocumented (<active> <inactive>) form.
-                     ((numberp (cadr alpha)) (cadr alpha)))
-               100)
-          '(85 . 50) '(100 . 100)))))
+  (interactive)
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (set-frame-parameter
+     nil 'alpha
+     (if (eql (cond ((numberp alpha) alpha)
+                    ((numberp (cdr alpha)) (cdr alpha))
+                    ;; Also handle undocumented (<active> <inactive>) form.
+                    ((numberp (cadr alpha)) (cadr alpha)))
+              100)
+         '(85 . 50) '(100 . 100)))))
 
 ;;;###autoload
 (defun +my/toggle-auto-save()
@@ -52,5 +52,4 @@
         (cancel-timer +my-auto-save-timer)
         (setq +my-auto-save-timer nil))
     (setq +my-auto-save-timer (auto-save-enable))))
-
 

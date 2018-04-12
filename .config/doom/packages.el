@@ -7,3 +7,5 @@
 (package! auto-save :ignore t)
 (package! visual-regexp)
 (package! visual-regexp-steroids)
+
+(package! keyfreq)

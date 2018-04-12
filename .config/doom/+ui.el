@@ -4,13 +4,10 @@
 
 
 (defun +my|init-font(frame)
-  (when (and (daemonp) (display-graphic-p))
     (with-selected-frame frame
-      (+my/better-font))))
+      (+my/better-font)))
 
 (if (and (fboundp 'daemonp) (daemonp))
-    (add-hook #'after-make-frame-functions #'+my|init-font)
+    (add-hook 'after-make-frame-functions #'+my|init-font)
   (+my/better-font))
-
-
 

@@ -3,8 +3,9 @@
 
 
 (defvar +my-site-lisp-dir (expand-file-name "~/.config/doom/site-lisp"))
-(defvar +my-auto-save-timer nil)
 (defvar +my-yas-snipper-dir (expand-file-name "~/.config/doom/snippets"))
+
+(defvar +my-auto-save-timer nil)
 
 
 ;; package archives
