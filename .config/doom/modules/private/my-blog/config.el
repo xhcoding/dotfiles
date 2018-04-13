@@ -4,8 +4,13 @@
   "~/Documents/Blog/"
   "Blog root directory.")
 
+(defvar +my-blog-img-dir
+  (concat +my-blog-root-dir "images/")
+  "Blog's image directory.")
+
 (defvar +my-blog-res-url
   "http://ivme.xhcoding.cn/")
+
 
 (def-package! org-octopress
   :config
@@ -19,7 +24,7 @@
   (map!
    (:leader
      (:desc "open" :prefix "o"
-       :desc "Open blog" :n "B" #'+my/open-org-octopress
+       :desc "Open blog" :n "B" #'+my-blog/open-org-octopress
        )
      )))
 
