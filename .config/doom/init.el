@@ -9,9 +9,9 @@
 
 
 ;; package archives
-(setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
-                         ("melpa" . "http://elpa.emacs-china.org/melpa/")
-			             ("org"   . "http://elpa.emacs-china.org/org/")))
+(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+			             ("org"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
 
 
 (setq doom-line-numbers-style nil)
