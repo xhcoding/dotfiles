@@ -2,7 +2,7 @@
 ;;; private/my-lang/packages.el
 
 
-(package! cquery)
+(package! ccls :recipe (:fetcher github :repo "MaskRay/emacs-ccls"))
 
 (package! clang-format)
 

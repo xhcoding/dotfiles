@@ -2,6 +2,8 @@
 (load! +bindings)
 (load! +ui)
 
+;; remove doom advice, I don't need deal with comments when newline
+(advice-remove #'newline-and-indent #'doom*newline-and-indent)
 
 ;; Reconfigure packages
 (after! evil-escape
@@ -30,7 +32,8 @@
 (def-package! lsp-mode
   :config
   (setq lsp-project-blacklist '("^/usr/")
-        lsp-highlight-symbol-at-point nil))
+        lsp-highlight-symbol-at-point nil)
+  (add-hook 'lsp-after-open-hook 'lsp-enable-imenu))
 
 (def-package! lsp-ui
   :hook (lsp-mode . lsp-ui-mode)

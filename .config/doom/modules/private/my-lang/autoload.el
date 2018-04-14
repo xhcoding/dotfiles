@@ -1,16 +1,23 @@
 ;;; private/my-lang/autoload.el -*- lexical-binding: t; -*-
 
 ;;;###autoload
-(defun cquery/base () (interactive) (lsp-ui-peek-find-custom 'base "$cquery/base"))
+(defun ccls//enable ()
+  (condition-case nil
+      (lsp-ccls-enable)
+    (user-error nil)))
+
 
 ;;;###autoload
-(defun cquery/callers () (interactive) (lsp-ui-peek-find-custom 'callers "$cquery/callers"))
+(defun ccls/base () (interactive) (lsp-ui-peek-find-custom 'base "$ccls/base"))
 
 ;;;###autoload
-(defun cquery/derived () (interactive) (lsp-ui-peek-find-custom 'derived "$cquery/derived"))
+(defun ccls/callers () (interactive) (lsp-ui-peek-find-custom 'callers "$ccls/callers"))
 
 ;;;###autoload
-(defun cquery/vars () (interactive) (lsp-ui-peek-find-custom 'vars "$cquery/vars"))
+(defun ccls/derived () (interactive) (lsp-ui-peek-find-custom 'derived "$ccls/derived"))
 
 ;;;###autoload
-(defun cquery/random () (interactive) (lsp-ui-peek-find-custom 'random "$cquery/random"))
+(defun ccls/vars () (interactive) (lsp-ui-peek-find-custom 'vars "$ccls/vars"))
+
+;;;###autoload
+(defun ccls/random () (interactive) (lsp-ui-peek-find-custom 'random "$ccls/random"))

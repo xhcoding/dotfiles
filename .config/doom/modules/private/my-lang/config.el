@@ -28,25 +28,34 @@
         c-tab-always-indent t)
   (add-hook 'c-mode-common-hook (lambda ()
                                   (c-set-style "my-cc")
-                                  (flycheck-mode t)
-                                  (+my/toggle-auto-save))))
+                                  (flycheck-mode t)))
+  (add-hook 'c-mode-common-hook #'+my/toggle-auto-save))
+
 
 (def-package! clang-format
   :commands (clang-format-region)
   )
 
-(def-package! cquery
+
+(def-package! ccls
+  :init
+  (add-hook 'c-mode-hook #'ccls//enable)
+  (add-hook 'c++-mode-hook #'ccls//enable)
   :config
-  (add-hook 'c-mode-hook #'lsp-cquery-enable)
-  (add-hook 'c++-mode-hook #'lsp-cquery-enable)
-  (setq cquery-executable "/usr/bin/cquery")
-  (setq cquery-extra-init-params
-        '(:cacheFormat "msgpack" :completion (:detailedLabel t) :xref (:container t)
-                       :diagnostics (:frequencyMs 5000)))
-  (add-to-list 'projectile-globally-ignored-directories ".cquery_cached_index")
+  ;; overlay is slow
+  ;; Use https://github.com/emacs-mirror/emacs/commits/feature/noverlay
+  (setq ccls-sem-highlight-method 'font-lock)
+  (ccls-use-default-rainbow-sem-highlight)
+  (setq ccls-executable "/usr/bin/ccls")
+  (setq ccls-extra-args '("--record=/tmp/ccls"))
+  (setq ccls-extra-init-params
+        '(:completion (:detailedLabel t) :xref (:container t)
+                      :diagnostics (:frequencyMs 5000)))
+  (add-to-list 'projectile-globally-ignored-directories ".ccls_cache")
   (add-to-list 'projectile-globally-ignored-directories "build")
   (set! :company-backend '(c-mode c++-mode) '(company-lsp))
   )
+
 
 
 (def-package! lsp-python
