@@ -1,7 +1,6 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 
-
 (defvar +my-site-lisp-dir (expand-file-name "~/.config/doom/site-lisp"))
 (defvar +my-yas-snipper-dir (expand-file-name "~/.config/doom/snippets"))
 
@@ -18,6 +17,8 @@
 
 (setq user-full-name "xhcoding"
       user-mail-address "xhcoding@163.com")
+
+
 
 
 ;; disable some packages

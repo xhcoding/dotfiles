@@ -48,6 +48,7 @@
   (map! :map lsp-ui-mode-map
         [remap xref-find-definitions] #'lsp-ui-peek-find-definitions
         [remap xref-find-references] #'lsp-ui-peek-find-references
+        [remap counsel-imenu] #'lsp-ui-imenu
         :after lsp-ui-peek
         :map lsp-ui-peek-mode-map
         "h" #'lsp-ui-peek--select-prev-file
@@ -89,5 +90,9 @@
 
 (def-package! keyfreq
   :config
+  (setq keyfreq-file (concat doom-etc-dir ".emacs.keyfrep"))
+  (setq keyfreq-file-lock (concat doom-etc-dir ".emacs.keyfrep.lock"))
   (keyfreq-mode t)
   (keyfreq-autosave-mode t))
+
+

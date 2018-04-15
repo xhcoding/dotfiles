@@ -20,4 +20,5 @@
           )
         (:desc "search" :prefix "s"
           :desc "replace"          :n  "r"    #'vr/replace)
-        ))
+        )
+      )

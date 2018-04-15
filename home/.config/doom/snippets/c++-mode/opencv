@@ -4,7 +4,7 @@
 # --
 
 #include <iostream>
-#include <opencv2/opencv.hpp>
+#include "../opencv.hpp"
 
 using namespace std;
 
@@ -16,12 +16,6 @@ int main(int argc, char **argv) {
 
     cv::Mat image = cv::imread(argv[1]);
 
-
-    while (true)  {
-        char c = cv::waitKey();
-        if (c == 27)  {
-            break;
-        }
-    }
+    waitPressESC()
     return 0;    
 }

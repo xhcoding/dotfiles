@@ -50,3 +50,4 @@ fi
 
 DEFAULT_SESSION=i3
 exec i3
+
