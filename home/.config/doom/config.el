@@ -9,6 +9,10 @@
 (after! evil-escape
   (setq evil-escape-key-sequence "fd"))
 
+(after! projectile
+  (setq projectile-require-project-root t))
+
+
 (after! org
   (setq org-ellipsis " ▼ "
         org-ditaa-jar-path doom-etc-dir)
@@ -94,5 +98,6 @@
   (setq keyfreq-file-lock (concat doom-etc-dir ".emacs.keyfrep.lock"))
   (keyfreq-mode t)
   (keyfreq-autosave-mode t))
+
 
 
