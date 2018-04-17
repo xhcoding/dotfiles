@@ -3,7 +3,7 @@
 
 
       ;; global keybinds
-      :gnvime "<f7>"      #'compile
+      :gnvime "<f7>"      #'projectile-compile-project
       :n      "RET"       #'next-buffer
       :n      "M-RET"     #'previous-buffer
       :i      "M-/"       #'+company/complete
@@ -20,5 +20,10 @@
           )
         (:desc "search" :prefix "s"
           :desc "replace"          :n  "r"    #'vr/replace)
-        )
-      )
+        (:desc "jump"   :prefix "j"
+          :desc "definitions"      :n  "d"    #'xref-find-definitions
+          :desc "reference"        :n  "r"    #'xref-find-references
+          :desc "forward"          :n  "f"    #'evil-jump-forward
+          :desc "backward"         :n  "b"    #'evil-jump-backward
+          )
+        ))

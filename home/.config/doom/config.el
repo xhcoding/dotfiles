@@ -50,10 +50,11 @@
         )
 
   (map! :map lsp-ui-mode-map
-        [remap xref-find-definitions] #'lsp-ui-peek-find-definitions
-        [remap xref-find-references] #'lsp-ui-peek-find-references
         [remap counsel-imenu] #'lsp-ui-imenu
         :after lsp-ui-peek
+        [remap xref-find-definitions] #'lsp-ui-peek-find-definitions
+        [remap xref-find-references] #'lsp-ui-peek-find-references
+
         :map lsp-ui-peek-mode-map
         "h" #'lsp-ui-peek--select-prev-file
         "j" #'lsp-ui-peek--select-next
@@ -99,5 +100,14 @@
   (keyfreq-mode t)
   (keyfreq-autosave-mode t))
 
+(def-package! emms
+  :config
+  (require 'emms-setup)
 
+  (setq emms-directory doom-cache-dir
+        emms-history-file (concat doom-cache-dir "history")
+        emms-player-mpv-input-file (concat doom-cache-dir "emms-mpv-input-file"))
 
+  (emms-all)
+  (emms-default-players)
+  )

@@ -1,3 +1,7 @@
+
+(package! gruvbox-theme)
+(package! doom-themes :ignore t)
+
 (package! lsp-mode)
 (package! lsp-ui)
 
@@ -9,3 +13,5 @@
 (package! visual-regexp-steroids)
 
 (package! keyfreq)
+
+(package! emms)
