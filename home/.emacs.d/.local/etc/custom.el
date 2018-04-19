@@ -11,6 +11,7 @@
  '(cua-normal-cursor-color "#839496")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
+ '(elfeed-feeds '("http://planet.emacsen.org/atom.xml"))
  '(highlight-changes-colors '("#d33682" "#6c71c4"))
  '(highlight-symbol-colors
    (--map
@@ -35,7 +36,7 @@
  '(nrepl-message-colors
    '("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4"))
  '(package-selected-packages
-   '(elfeed lsp-python solarized-theme keyfreq neotree clang-format google-c-style pyvenv visual-regexp-steroids visual-regexp emacs-snippets mu4e-maildirs-extension shrink-path solaire-mode doom-themes which-key visual-fill-column use-package smartparens smart-forward shackle rainbow-delimiters quelpa persistent-soft pcre2el highlight-numbers highlight-indentation hide-mode-line helpful editorconfig command-log-mode ace-window ace-link))
+   '(evil-nerd-commenter fcitx multiple-cursors vimrc-mode elfeed lsp-python solarized-theme keyfreq neotree clang-format google-c-style pyvenv visual-regexp-steroids visual-regexp emacs-snippets mu4e-maildirs-extension shrink-path solaire-mode which-key visual-fill-column use-package smartparens smart-forward shackle rainbow-delimiters quelpa persistent-soft pcre2el highlight-numbers highlight-indentation hide-mode-line helpful editorconfig command-log-mode ace-window ace-link))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))

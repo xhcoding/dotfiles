@@ -4,7 +4,7 @@
 
 (package! ccls :recipe (:fetcher github :repo "MaskRay/emacs-ccls"))
 
-(package! clang-format)
+(package! google-c-style)
 
 (package! lsp-python :recipe (:fetcher github :repo "emacs-lsp/lsp-python"))
 

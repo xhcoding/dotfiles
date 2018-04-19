@@ -103,11 +103,19 @@
 (def-package! emms
   :config
   (require 'emms-setup)
+  (require 'emms-player-mpd)
+  (emms-all)
 
+  ;; directory
   (setq emms-directory doom-cache-dir
         emms-history-file (concat doom-cache-dir "history")
+        emms-source-file-default-directory "~/Music"
         emms-player-mpv-input-file (concat doom-cache-dir "emms-mpv-input-file"))
 
-  (emms-all)
-  (emms-default-players)
-  )
+  (setq emms-player-list '(emms-player-mpv emms-player-vlc))
+
+  (map!
+   (:leader
+     (:prefix "o"
+       :desc "APP:emms"  :n "e" #'emms))))
+

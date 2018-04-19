@@ -93,3 +93,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias cmaked="cmake -DCMAKE_BUILD_TYPE=Debug"
+alias cmaker="cmake -DCMAKE_BUILD_TYPE=Release"
