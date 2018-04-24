@@ -108,7 +108,8 @@
 
   ;; directory
   (setq emms-directory doom-cache-dir
-        emms-history-file (concat doom-cache-dir "history")
+        emms-history-file (concat emms-directory "history")
+        emms-score-file   (concat emms-directory "score")
         emms-source-file-default-directory "~/Music"
         emms-player-mpv-input-file (concat doom-cache-dir "emms-mpv-input-file"))
 
@@ -119,3 +120,13 @@
      (:prefix "o"
        :desc "APP:emms"  :n "e" #'emms))))
 
+(after! elfeed
+  (setq elfeed-feeds '(
+                       ("http://planet.emacsen.org/atom.xml" emacsen)
+                       ("http://www.people.com.cn/rss/politics.xml" people politics)
+                       ("http://www.people.com.cn/rss/world.xml"    people world)
+                       ("http://www.people.com.cn/rss/finance.xml"  people finance)
+                       ("http://www.people.com.cn/rss/game.xml"     people game)
+                       ("https://www.zhihu.com/rss" zhihu)
+                       ("http://www.ftchinese.com/rss/feed" ftchinese)
+                       )))

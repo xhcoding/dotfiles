@@ -61,6 +61,7 @@ plugins=(
   git
   emacs
   wd
+  emoji
 )
 
 source $ZSH/oh-my-zsh.sh

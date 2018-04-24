@@ -150,7 +150,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 
 assign [class="Google-chrome"] $ws8
-assign [class="URxvt"] $ws9
+assign [class="Termite"] $ws9
 assign [class="Emacs"] $ws10
 
 

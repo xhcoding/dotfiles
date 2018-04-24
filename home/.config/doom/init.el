@@ -21,6 +21,7 @@
 
 
 
+
 ;; disable some packages
 (disable-packages! smex
                    irony
@@ -39,10 +40,10 @@
  (popup            ; tame sudden yet inevitable temporary windows
   +all             ; catch all popups that start with an asterix
   +defaults)       ; default popup rules
+ eval              ; run code, run (also, repls)
  (evil +everywhere); come to the dark side, we have cookies
  snippets          ; my elves. They type so I don't have to
  syntax-checker    ; tasing you for every semicolon you forget
- look-up
 
  :completion
  company           ; the ultimate code completion backend
@@ -79,7 +80,7 @@
  plantuml          ; diagrams for confusing people more
 
  :app
- (rss +org)        ; emacs as an RSS reader
+ rss               ; emacs as an RSS reader
 
  :config
  ;; The default module set reasonable defaults for Emacs. It also provides

@@ -1,14 +1,11 @@
 ;;; private/my-lang/config.el -*- lexical-binding: t; -*-
 
-(def-package! google-c-style)
+(def-package! google-c-style
+  :config
+  (add-hook! (c-mode c++-mode) #'google-set-c-style))
 
 (after! cc-mode
-  (add-hook! 'c-mode-hook #'google-set-c-style)
-  (add-hook! 'c++-mode-hook #'google-set-c-style)
-  (add-hook! 'c-mode-common-hook (lambda! ()
-                                  (flycheck-mode t)))
-  (add-hook! 'c-mode-common-hook #'+my/toggle-auto-save))
-
+  (add-hook! 'c-mode-common-hook #'(flycheck-mode)))
 
 (def-package! ccls
   :init
@@ -17,18 +14,21 @@
   :config
   ;; overlay is slow
   ;; Use https://github.com/emacs-mirror/emacs/commits/feature/noverlay
-  (setq ccls-sem-highlight-method 'font-lock)
-  (ccls-use-default-rainbow-sem-highlight)
+  ;; (setq ccls-sem-highlight-method 'font-lock)
+  ;; (ccls-use-default-rainbow-sem-highlight)
   (setq ccls-executable "/usr/bin/ccls")
-  (setq ccls-extra-args '("--record=/tmp/ccls"))
   (setq ccls-extra-init-params
         '(:completion (:detailedLabel t) :xref (:container t)
                       :diagnostics (:frequencyMs 5000)))
-  (add-to-list 'projectile-globally-ignored-directories ".ccls_cache")
-  (add-to-list 'projectile-globally-ignored-directories "build")
+  (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
   (set! :company-backend '(c-mode c++-mode) '(company-lsp))
   )
 
+(after! projectile
+  (setq projectile-project-root-files-top-down-recurring
+        (append '("compile_commands.json"
+                  ".ccls-root")
+                projectile-project-root-files-top-down-recurring)))
 
 
 (def-package! lsp-python
@@ -61,5 +61,5 @@
 (after! latex
   (add-hook 'LaTeX-mode-hook
             (lambda!()
-              (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1 %(mode)%' %t" TeX-run-TeX nil t))
-              (setq TeX-command-default "XeLaTeX"))))
+                (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1 %(mode)%' %t" TeX-run-TeX nil t))
+                (setq TeX-command-default "XeLaTeX"))))
