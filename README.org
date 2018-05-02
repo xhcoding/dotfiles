@@ -1,2 +1,0 @@
-* dotfiles
- 我的archlinux配置

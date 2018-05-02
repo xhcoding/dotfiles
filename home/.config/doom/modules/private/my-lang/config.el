@@ -5,18 +5,18 @@
   (add-hook! (c-mode c++-mode) #'google-set-c-style))
 
 (after! cc-mode
-  (add-hook! 'c-mode-common-hook #'(flycheck-mode)))
+  (add-hook! 'c-mode-common-hook #'flycheck-mode))
 
 (def-package! ccls
   :init
-  (add-hook 'c-mode-hook #'ccls//enable)
-  (add-hook 'c++-mode-hook #'ccls//enable)
+  (add-hook! (c-mode c++-mode) #'+my-lang-ccls-enable)
   :config
   ;; overlay is slow
   ;; Use https://github.com/emacs-mirror/emacs/commits/feature/noverlay
   ;; (setq ccls-sem-highlight-method 'font-lock)
   ;; (ccls-use-default-rainbow-sem-highlight)
   (setq ccls-executable "/usr/bin/ccls")
+  (setq ccls-extra-args '("--log-file=/tmp/cq.log"))
   (setq ccls-extra-init-params
         '(:completion (:detailedLabel t) :xref (:container t)
                       :diagnostics (:frequencyMs 5000)))
@@ -27,7 +27,7 @@
 (after! projectile
   (setq projectile-project-root-files-top-down-recurring
         (append '("compile_commands.json"
-                  ".ccls-root")
+                  ".ccls_root")
                 projectile-project-root-files-top-down-recurring)))
 
 
@@ -41,7 +41,7 @@
 
 (def-package! lsp-java
   :init
-  (add-hook 'java-mode-hook #'lsp-java-enable)
+  (add-hook! java-mode #'+my-lang-lsp-java-enable)
   :config
   (setq lsp-java-server-install-dir
         (expand-file-name (concat doom-etc-dir "eclipse.jdt.ls/server/")))
@@ -63,3 +63,8 @@
             (lambda!()
                 (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1 %(mode)%' %t" TeX-run-TeX nil t))
                 (setq TeX-command-default "XeLaTeX"))))
+
+(after! lsp-ui
+  (set! :lookup '(c-mode c++-mode java-mode python-mode)
+    :definition #'lsp-ui-peek-find-definitions
+    :references #'lsp-ui-peek-find-references))

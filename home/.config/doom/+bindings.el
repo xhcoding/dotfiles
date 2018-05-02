@@ -4,6 +4,8 @@
 
       ;; global keybinds
       :gnvime "<f7>"      #'projectile-compile-project
+      :gnvime "M-g s"     #'up-list
+      :gnvime "M-g S"     #'backward-up-list
       :n      "RET"       #'next-buffer
       :n      "M-RET"     #'previous-buffer
       :i      "M-/"       #'+company/complete
@@ -11,6 +13,8 @@
       :i      "M-b"       #'backward-char
       :i      "M-n"       #'next-line
       :i      "M-p"       #'previous-line
+      :m      "gb"        #'evil-jump-backward
+      :m      "gB"        #'evil-jump-forward
 
       (:leader
         (:prefix "o"
@@ -23,10 +27,4 @@
         (:desc "search" :prefix "s"
           :desc "replace"          :n  "r"    #'vr/replace
           :desc "query replace"    :n  "R"    #'vr/query-replace)
-        (:desc "jump"   :prefix "j"
-          :desc "definitions"      :n  "d"    #'xref-find-definitions
-          :desc "reference"        :n  "r"    #'xref-find-references
-          :desc "forward"          :n  "f"    #'evil-jump-forward
-          :desc "backward"         :n  "b"    #'evil-jump-backward
-          )
         ))

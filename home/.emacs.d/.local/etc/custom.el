@@ -12,7 +12,7 @@
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
  '(custom-safe-themes
-   '("aa0a998c0aa672156f19a1e1a3fb212cdc10338fb50063332a0df1646eb5dfea" "bbb4a4d39ed6551f887b7a3b4b84d41a3377535ccccf901a3c08c7317fad7008" "891debfe489c769383717cc7d0020244a8d62ce6f076b2c42dd1465b7c94204d" "ed0b4fc082715fc1d6a547650752cd8ec76c400ef72eb159543db1770a27caa7" default))
+   '("b050365105e429cb517d98f9a267d30c89336e36b109a1723d95bc0f7ce8c11d" "aa0a998c0aa672156f19a1e1a3fb212cdc10338fb50063332a0df1646eb5dfea" "bbb4a4d39ed6551f887b7a3b4b84d41a3377535ccccf901a3c08c7317fad7008" "891debfe489c769383717cc7d0020244a8d62ce6f076b2c42dd1465b7c94204d" "ed0b4fc082715fc1d6a547650752cd8ec76c400ef72eb159543db1770a27caa7" default))
  '(highlight-changes-colors '("#d33682" "#6c71c4"))
  '(highlight-symbol-colors
    (--map
@@ -37,7 +37,7 @@
  '(nrepl-message-colors
    '("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4"))
  '(package-selected-packages
-   '(evil-nerd-commenter fcitx multiple-cursors vimrc-mode elfeed lsp-python solarized-theme keyfreq neotree clang-format google-c-style pyvenv visual-regexp-steroids visual-regexp emacs-snippets mu4e-maildirs-extension shrink-path solaire-mode which-key visual-fill-column use-package smartparens smart-forward shackle rainbow-delimiters quelpa persistent-soft pcre2el highlight-numbers highlight-indentation hide-mode-line helpful editorconfig command-log-mode ace-window ace-link))
+   '(cquery evil-nerd-commenter fcitx multiple-cursors vimrc-mode elfeed lsp-python solarized-theme keyfreq neotree clang-format google-c-style pyvenv visual-regexp-steroids visual-regexp emacs-snippets mu4e-maildirs-extension shrink-path solaire-mode which-key visual-fill-column use-package smartparens smart-forward shackle rainbow-delimiters quelpa persistent-soft pcre2el highlight-numbers highlight-indentation hide-mode-line helpful editorconfig command-log-mode ace-window ace-link))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))

@@ -49,18 +49,13 @@
         lsp-ui-doc-max-width 50
         )
 
-  (map! :map lsp-ui-mode-map
-        [remap counsel-imenu] #'lsp-ui-imenu
-        :after lsp-ui-peek
-        [remap xref-find-definitions] #'lsp-ui-peek-find-definitions
-        [remap xref-find-references] #'lsp-ui-peek-find-references
-
-        :map lsp-ui-peek-mode-map
-        "h" #'lsp-ui-peek--select-prev-file
-        "j" #'lsp-ui-peek--select-next
-        "k" #'lsp-ui-peek--select-prev
-        "l" #'lsp-ui-peek--select-next-file
-        ))
+  (map!
+   :map lsp-ui-peek-mode-map
+   "h" #'lsp-ui-peek--select-prev-file
+   "j" #'lsp-ui-peek--select-next
+   "k" #'lsp-ui-peek--select-prev
+   "l" #'lsp-ui-peek--select-next-file
+   ))
 
 
 (set! :popup "^\\*helpful" '((size . 0.4)))
