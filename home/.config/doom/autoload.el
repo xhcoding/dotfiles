@@ -53,3 +53,16 @@
         (setq +my-auto-save-timer nil))
     (setq +my-auto-save-timer (auto-save-enable))))
 
+;; rename this buffer and name
+(defun +my/rename-this-file-and-buffer (new-name)
+  "Rename both current buffer and file it's visiting to NEW_NAME"
+  (interactive "sNew name: ")
+  (let ((name (buffer-name))
+	(filename (buffer-file-name)))
+    (unless filename
+      (error "Buffer '%s' is not visiting a file" name))
+    (progn
+      (when (file-exists-p filename)
+	(rename-file filename new-name 1))
+      (set-visited-file-name new-name)
+      (rename-buffer new-name))))

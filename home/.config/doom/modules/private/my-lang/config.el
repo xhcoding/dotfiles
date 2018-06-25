@@ -13,8 +13,8 @@
   :config
   ;; overlay is slow
   ;; Use https://github.com/emacs-mirror/emacs/commits/feature/noverlay
-  ;; (setq ccls-sem-highlight-method 'font-lock)
-  ;; (ccls-use-default-rainbow-sem-highlight)
+  (setq ccls-sem-highlight-method 'font-lock)
+  (ccls-use-default-rainbow-sem-highlight)
   (setq ccls-executable "/usr/bin/ccls")
   (setq ccls-extra-args '("--log-file=/tmp/cq.log"))
   (setq ccls-extra-init-params

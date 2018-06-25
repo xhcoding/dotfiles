@@ -13,7 +13,8 @@ set $i3dir $HOME/.config/i3
 
 exec --no-startup-id feh --bg-scale "$HOME/.config/i3/wallpaper.jpg"
 exec_always compton
-exec $HOME/Tools/linux-useful-scripts/emacsclient.sh
+#exec $HOME/Tools/linux-useful-scripts/emacsclient.sh
+exec_always fcitx
 
 set $mod Mod4
 
@@ -227,4 +228,6 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 bindsym $mod+Pause mode "$mode_system"
+
+bindsym $mod+c  exec /home/xhcoding/Tools/linux-useful-scripts/minecraft-chinese-input.sh
 

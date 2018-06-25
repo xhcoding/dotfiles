@@ -13,8 +13,3 @@
 
 (package! visual-regexp)
 (package! visual-regexp-steroids)
-
-(package! keyfreq)
-
-(package! emms)
-

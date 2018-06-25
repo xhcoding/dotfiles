@@ -47,8 +47,8 @@ font-1 = Wuncon siji:pixelsize=10;1
 font-2 = Weather Icons:size=10;1
 
 modules-left = i3 
-modules-center = mpd
-modules-right = backlight-acpi pulseaudio wlan eth memory cpu battery temperature date openweathermap-simple powermenu
+modules-center = 
+modules-right = pulseaudio wlan eth memory cpu battery temperature date openweathermap-simple powermenu
 
 tray-position = right
 tray-padding = 2

@@ -45,3 +45,9 @@
     "deepin-screenshot -s " (concat (expand-file-name +my-blog-img-dir) filename)))
   (+my-blog-kill-new-img-link
    +my-blog-img-dir (concat filename ".png")))
+
+;;;###autoload
+(defun +my-blog/org-save-and-export ()
+  (interactive)
+  (org-octopress-setup-publish-project)
+  (org-publish-project "octopress" t))

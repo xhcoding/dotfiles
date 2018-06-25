@@ -39,6 +39,8 @@
         lsp-highlight-symbol-at-point nil)
   (add-hook 'lsp-after-open-hook 'lsp-enable-imenu))
 
+(def-package! company-lsp)
+
 (def-package! lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
   :config
@@ -87,41 +89,3 @@
   (sp-local-pair 'cc-mode "(" nil :actions nil)
   (sp-local-pair 'cc-mode "[" nil :actions nil)
   )
-
-(def-package! keyfreq
-  :config
-  (setq keyfreq-file (concat doom-etc-dir ".emacs.keyfrep"))
-  (setq keyfreq-file-lock (concat doom-etc-dir ".emacs.keyfrep.lock"))
-  (keyfreq-mode t)
-  (keyfreq-autosave-mode t))
-
-(def-package! emms
-  :config
-  (require 'emms-setup)
-  (require 'emms-player-mpd)
-  (emms-all)
-
-  ;; directory
-  (setq emms-directory doom-cache-dir
-        emms-history-file (concat emms-directory "history")
-        emms-score-file   (concat emms-directory "score")
-        emms-source-file-default-directory "~/Music"
-        emms-player-mpv-input-file (concat doom-cache-dir "emms-mpv-input-file"))
-
-  (setq emms-player-list '(emms-player-mpv emms-player-vlc))
-
-  (map!
-   (:leader
-     (:prefix "o"
-       :desc "APP:emms"  :n "e" #'emms))))
-
-(after! elfeed
-  (setq elfeed-feeds '(
-                       ("http://planet.emacsen.org/atom.xml" emacsen)
-                       ("http://www.people.com.cn/rss/politics.xml" people politics)
-                       ("http://www.people.com.cn/rss/world.xml"    people world)
-                       ("http://www.people.com.cn/rss/finance.xml"  people finance)
-                       ("http://www.people.com.cn/rss/game.xml"     people game)
-                       ("https://www.zhihu.com/rss" zhihu)
-                       ("http://www.ftchinese.com/rss/feed" ftchinese)
-                       )))
