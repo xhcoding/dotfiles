@@ -22,33 +22,24 @@
 
 
 
-;; disable some packages
-(disable-packages! smex
-                   irony
-                   irony-eldoc
-                   flycheck-irony
-                   company-irony
-                   company-irony-c-headers
-                   rtags
-                   ivy-rtags
-                   anaconda-mode
-                   company-anaconda
-                   )
-
 (doom!
  :feature
- (popup            ; tame sudden yet inevitable temporary windows
-  +all             ; catch all popups that start with an asterix
-  +defaults)       ; default popup rules
  eval              ; run code, run (also, repls)
  (evil +everywhere); come to the dark side, we have cookies
  snippets          ; my elves. They type so I don't have to
  syntax-checker    ; tasing you for every semicolon you forget
  lookup
+ (syntax-checker   ; tasing you for every semicolon you forget
+  +childframe)     ; use childframes for (error "" &optional ARGS) popups (Emacs 26+ only)
 
  :completion
- company           ; the ultimate code completion backend
- ivy               ; a search engine for love and life
+ (company           ; the ultimate code completion backend
+  +auto
+  +childframe
+  )
+ (ivy               ; a search engine for love and life
+  +fuzzy
+  +childframe)
 
  :ui
  doom              ; what makes DOOM look the way it does
@@ -59,19 +50,24 @@
  nav-flash         ; blink the current line after jumping
  evil-goggles      ; display visual hints when editing in evil
  (window-select +ace-window)  ; visually switch windows
+ (popup            ; tame sudden yet inevitable temporary windows
+  +all             ; catch all popups that start with an asterix
+  +defaults)       ; default popup rules
+
+ :emacs
+ dired             ; making dired pretty [functional]
+ term              ; terminals in Emacs
+
 
  :tools
- dired             ; making dired pretty [functional]
  magit
  pdf               ; pdf enhancements
- term              ; terminals in Emacs
 
  :lang
  cc                ; C/C++/Obj-C madness
  python            ; beautiful is better than ugly
  emacs-lisp        ; drown in parentheses
- (latex            ; writing papers in Emacs has never been so fun
-  )
+ latex            ; writing papers in Emacs has never been so fun
   (org              ; organize your plain life in plain text
   +attach          ; custom attachment system
   +babel           ; running code in org
@@ -80,6 +76,7 @@
   +present         ; Emacs for presentations
   +publish)        ; Emacs+Org as a static site generator
  plantuml          ; diagrams for confusing people more
+ web
 
  :app
  rss               ; emacs as an RSS reader

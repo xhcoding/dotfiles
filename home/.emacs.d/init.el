@@ -27,11 +27,8 @@
 ;;
 ;;; License: MIT
 
-(require 'core (concat user-emacs-directory "core/core"))
+(unless (boundp 'early-init-file)
+  (load (concat (file-name-directory load-file-name) "early-init")
+        nil t))
 
-(doom!
- :config
- ;; This allows you to store your private module at
- ;; $XDG_CONFIG_HOME/doom/. Without +xdg it uses ~/.doom.d/. If your
- ;; config directory doesn't exist, this module does nothing.
- (private +xdg))
+(require 'core (concat user-emacs-directory "core/core"))

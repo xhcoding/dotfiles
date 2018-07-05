@@ -2,8 +2,6 @@
 
 ;; font
 
-(def-package-hook! doom-themes :disable)
-
 (def-package! gruvbox-theme
   :config
   (setq doom-theme 'gruvbox-dark-hard))
@@ -13,7 +11,8 @@
   (with-selected-frame frame
     (+my/better-font)))
 
-(if (and (fboundp 'daemonp) (daemonp))
-    (add-hook 'after-make-frame-functions #'+my|init-font)
-  (+my/better-font))
-
+(if window-system
+    (progn
+      (if (and (fboundp 'daemonp) (daemonp))
+          (add-hook 'after-make-frame-functions #'+my|init-font)
+        (+my/better-font))))

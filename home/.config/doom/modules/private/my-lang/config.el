@@ -20,8 +20,9 @@
   (setq ccls-extra-init-params
         '(:completion (:detailedLabel t) :xref (:container t)
                       :diagnostics (:frequencyMs 5000)))
-  (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
-  (set! :company-backend '(c-mode c++-mode) '(company-lsp))
+  (with-eval-after-load 'projectile
+    (add-to-list 'projectile-globally-ignored-directories ".ccls-cache"))
+  (set-company-backend! '(c-mode c++-mode) '(company-lsp))
   )
 
 (after! projectile
@@ -36,7 +37,7 @@
   :init
   (add-hook! 'python-mode-hook #'lsp-python-enable)
   :config
-  (set! :company-backend 'python-mode '(company-lsp))
+  (set-company-backend! 'python-mode '(company-lsp))
   )
 
 (def-package! lsp-java
@@ -65,6 +66,6 @@
                 (setq TeX-command-default "XeLaTeX"))))
 
 (after! lsp-ui
-  (set! :lookup '(c-mode c++-mode java-mode python-mode)
+  (set-lookup-handlers! '(c-mode c++-mode java-mode python-mode)
     :definition #'lsp-ui-peek-find-definitions
     :references #'lsp-ui-peek-find-references))

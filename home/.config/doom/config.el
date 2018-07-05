@@ -1,13 +1,13 @@
 ;;; config/private/+ui.el -*- lexical-binding: t; -*-
-(load! +bindings)
-(load! +ui)
+(load! "+bindings")
+(load! "+ui")
 
 ;; remove doom advice, I don't need deal with comments when newline
 (advice-remove #'newline-and-indent #'doom*newline-and-indent)
 
 ;; Reconfigure packages
 (after! evil-escape
-  (setq evil-escape-key-sequence "fd"))
+  (setq evil-escape-key-sequence "jk"))
 
 (after! projectile
   (setq projectile-require-project-root t))
@@ -21,17 +21,15 @@
   (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
   (org-element-update-syntax))
 
-(require 'company)
 (after! company
-  (setq company-idle-delay 0.2
-        company-minimum-prefix-length 2
-        company-tooltip-limit 10
+  (setq company-minimum-prefix-length 2
         company-show-numbers t
-        company-backends '(( company-files company-capf company-dabbrev)))
+        )
   (map! :map company-active-map
         "M-g" #'company-abort
         "M-d" #'company-next-page
         "M-u" #'company-previous-page))
+
 
 (def-package! lsp-mode
   :config
@@ -39,7 +37,10 @@
         lsp-highlight-symbol-at-point nil)
   (add-hook 'lsp-after-open-hook 'lsp-enable-imenu))
 
-(def-package! company-lsp)
+(def-package! company-lsp
+  :after company
+  :init
+  (setq company-lsp-cache-candidates nil))
 
 (def-package! lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -60,11 +61,10 @@
    ))
 
 
-(set! :popup "^\\*helpful" '((size . 0.4)))
-(set! :popup "^\\*info\\*$" '((size . 0.4)))
-(set! :popup "^\\*eww\\*$"  '((size . 0.5)))
-(set! :popup "^\\*doom \\(?:term\\|eshell\\)"  '((size . 0.4)))
-
+(set-popup-rules!
+  '(("^\\*helpful" :size 0.4)
+    ("^\\*info\\*$" :size 0.4)
+    ("^\\*doom \\(?:term\\|eshell\\)" :size 0.4)))
 
 (def-package! auto-save
   :load-path +my-site-lisp-dir
