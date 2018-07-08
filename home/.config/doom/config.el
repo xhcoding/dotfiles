@@ -52,7 +52,6 @@
         lsp-ui-sideline-ignore-duplicate t
         lsp-ui-doc-max-width 50
         )
-
   (map!
    :map lsp-ui-peek-mode-map
    "h" #'lsp-ui-peek--select-prev-file
@@ -99,3 +98,7 @@
    (:leader
      (:prefix "t"
        :n     "e"     #'toggle-company-english-helper))))
+
+(def-package! company-posframe
+  :after company
+  :hook (company-mode . company-posframe-mode))

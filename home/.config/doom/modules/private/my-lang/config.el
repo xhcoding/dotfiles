@@ -62,8 +62,8 @@
 (after! latex
   (add-hook 'LaTeX-mode-hook
             (lambda!()
-                (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1 %(mode)%' %t" TeX-run-TeX nil t))
-                (setq TeX-command-default "XeLaTeX"))))
+                    (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1 %(mode)%' %t" TeX-run-TeX nil t))
+                    (setq TeX-command-default "XeLaTeX"))))
 
 (after! lsp-ui
   (set-lookup-handlers! '(c-mode c++-mode java-mode python-mode)

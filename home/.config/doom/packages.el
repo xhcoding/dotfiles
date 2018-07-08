@@ -13,7 +13,7 @@
                    ivy-rtags
                    anaconda-mode
                    company-anaconda
-                   doom-theme
+                   doom-themes
                    )
 
 
@@ -33,3 +33,5 @@
 (package! visual-regexp-steroids)
 
 (package! company-english-helper :ignore t)
+
+(package! company-posframe)
