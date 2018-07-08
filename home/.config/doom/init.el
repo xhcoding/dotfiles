@@ -1,6 +1,6 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-
+;; 一些目录
 (defvar +my-site-lisp-dir (expand-file-name "~/.config/doom/site-lisp"))
 (defvar +my-yas-snipper-dir (expand-file-name "~/.config/doom/snippets"))
 

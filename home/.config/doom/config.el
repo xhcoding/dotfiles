@@ -23,6 +23,7 @@
 
 (after! company
   (setq company-minimum-prefix-length 2
+        company-tooltip-limit 10
         company-show-numbers t
         )
   (map! :map company-active-map
@@ -83,9 +84,18 @@
   (define-advice show-paren-function (:around (fn) fix-show-paren-function)
     "Highlight enclosing parens"
     (cond ((looking-at-p "\\s(") (funcall fn))
-	      (t (save-excursion
-		       (ignore-errors (backward-up-list))
-		       (funcall fn)))))
+	        (t (save-excursion
+		           (ignore-errors (backward-up-list))
+		           (funcall fn)))))
   (sp-local-pair 'cc-mode "(" nil :actions nil)
   (sp-local-pair 'cc-mode "[" nil :actions nil)
   )
+
+
+(def-package! company-english-helper
+  :load-path +my-site-lisp-dir
+  :config
+  (map!
+   (:leader
+     (:prefix "t"
+       :n     "e"     #'toggle-company-english-helper))))

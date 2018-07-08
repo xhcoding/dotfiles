@@ -31,3 +31,5 @@
 
 (package! visual-regexp)
 (package! visual-regexp-steroids)
+
+(package! company-english-helper :ignore t)
