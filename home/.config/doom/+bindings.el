@@ -17,6 +17,7 @@
       :i      "C-s"       #'counsel-grep-or-swiper
       :m      "gb"        #'evil-jump-backward
       :m      "gB"        #'evil-jump-forward
+      :n      "gC"        #'evilnc-comment-or-uncomment-lines
 
       (:leader
         (:prefix "o"

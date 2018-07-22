@@ -6,6 +6,8 @@
 
 (package! google-c-style)
 
+(package! clang-format)
+
 (package! srefactor)
 
 (package! lsp-python :recipe (:fetcher github :repo "emacs-lsp/lsp-python"))

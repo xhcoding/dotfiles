@@ -11,8 +11,8 @@
   (with-selected-frame frame
     (+my/better-font)))
 
+(if (and (fboundp 'daemonp) (daemonp))
+    (add-hook 'after-make-frame-functions #'+my|init-font))
+
 (if window-system
-    (progn
-      (if (and (fboundp 'daemonp) (daemonp))
-          (add-hook 'after-make-frame-functions #'+my|init-font)
-        (+my/better-font))))
+    (+my/better-font))

@@ -25,6 +25,7 @@
   (setq company-minimum-prefix-length 2
         company-tooltip-limit 10
         company-show-numbers t
+        company-global-modes '(not comint-mode erc-mode message-mode help-mode gud-mode)
         )
   (map! :map company-active-map
         "M-g" #'company-abort
@@ -60,11 +61,6 @@
    "l" #'lsp-ui-peek--select-next-file
    ))
 
-
-(set-popup-rules!
-  '(("^\\*helpful" :size 0.4)
-    ("^\\*info\\*$" :size 0.4)
-    ("^\\*doom \\(?:term\\|eshell\\)" :size 0.4)))
 
 (def-package! auto-save
   :load-path +my-site-lisp-dir
@@ -102,3 +98,49 @@
 (def-package! company-posframe
   :after company
   :hook (company-mode . company-posframe-mode))
+
+
+(defun +advice/xref-set-jump (&rest args)
+  (lsp-ui-peek--with-evil-jumps (evil-set-jump)))
+(advice-add '+lookup/definition :before #'+advice/xref-set-jump)
+(advice-add '+lookup/references :before #'+advice/xref-set-jump)
+
+
+(defvar +my/xref-blacklist nil
+  "List of paths that should not enable xref-find-* or dumb-jump-go")
+
+(after! xref
+  (setq xref-prompt-for-identifier '(not xref-find-definitions
+                                         xref-find-definitions-other-window
+                                         xref-find-definitions-other-frame
+                                         xref-find-references))
+
+  (defun xref--show-xrefs (xrefs display-action &optional always-show-list)
+    (lsp-ui-peek--with-evil-jumps (evil-set-jump))
+
+    (if (not (cdr xrefs))
+        (xref--pop-to-location (car xrefs) display-action)
+      (funcall xref-show-xrefs-function xrefs
+               `((window . ,(selected-window))))
+      ))
+  )
+
+(after! ivy-xref
+  (push '(ivy-xref-show-xrefs . nil) ivy-sort-functions-alist)
+  )
+
+
+(def-package! eaf
+  :load-path (lambda()(concat +my-site-lisp-dir "/emacs-application-framework")))
+
+(def-package! scroll-other-window
+  :load-path +my-site-lisp-dir
+  :config
+  (sow-mode 1))
+
+(set-popup-rules!
+  '(("^\\*helpful" :size 0.4)
+    ("^\\*info\\*$" :size 0.4)
+    ("^\\*doom \\(?:term\\|eshell\\)" :size 0.4)))
+
+(set-lookup-handlers! 'emacs-lisp-mode :documentation #'helpful-at-point)

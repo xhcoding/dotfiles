@@ -27,7 +27,6 @@
  eval              ; run code, run (also, repls)
  (evil +everywhere); come to the dark side, we have cookies
  snippets          ; my elves. They type so I don't have to
- syntax-checker    ; tasing you for every semicolon you forget
  lookup
  (syntax-checker   ; tasing you for every semicolon you forget
   +childframe)     ; use childframes for (error "" &optional ARGS) popups (Emacs 26+ only)
@@ -67,7 +66,7 @@
  python            ; beautiful is better than ugly
  emacs-lisp        ; drown in parentheses
  latex            ; writing papers in Emacs has never been so fun
-  (org              ; organize your plain life in plain text
+ (org              ; organize your plain life in plain text
   +attach          ; custom attachment system
   +babel           ; running code in org
   +capture         ; org-capture in and outside of Emacs

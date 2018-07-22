@@ -35,3 +35,6 @@
 (package! company-english-helper :ignore t)
 
 (package! company-posframe)
+
+(package! eaf :ignore t)
+

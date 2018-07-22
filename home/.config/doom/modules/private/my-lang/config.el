@@ -7,6 +7,9 @@
 (after! cc-mode
   (add-hook! 'c-mode-common-hook #'flycheck-mode))
 
+(def-package! clang-format
+  :commands (clang-format-region))
+
 (def-package! ccls
   :init
   (add-hook! (c-mode c++-mode) #'+my-lang-ccls-enable)
