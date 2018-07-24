@@ -13,7 +13,7 @@ set $i3dir $HOME/.config/i3
 
 exec --no-startup-id feh --bg-scale "$HOME/.config/i3/wallpaper.jpg"
 exec_always compton
-#exec $HOME/Tools/linux-useful-scripts/emacsclient.sh
+exec $HOME/Tools/linux-useful-scripts/emacsclient.sh
 exec_always fcitx
 
 set $mod Mod4

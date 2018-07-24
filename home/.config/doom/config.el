@@ -136,7 +136,24 @@
 (def-package! scroll-other-window
   :load-path +my-site-lisp-dir
   :config
-  (sow-mode 1))
+  (sow-mode 1)
+  (map!
+   :gnvime "<M-up>"    #'sow-scroll-other-window-down
+   :gnvime "<M-down>"  #'sow-scroll-other-window))
+
+
+(def-package! openwith
+  :load-path +my-site-lisp-dir
+  :config
+  (setq openwith-associations
+        '(
+          ("\\.pdf\\'" "okular" (file))
+          ("\\.docx?\\'" "wps" (file))
+          ("\\.pptx?\\'" "wpp" (file))
+          ("\\.xlsx?\\'" "et" (file))))
+  (add-hook! :append 'emacs-startup-hook #'openwith-mode)
+  )
+
 
 (set-popup-rules!
   '(("^\\*helpful" :size 0.4)

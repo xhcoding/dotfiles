@@ -19,10 +19,11 @@
   (setq ccls-sem-highlight-method 'font-lock)
   (ccls-use-default-rainbow-sem-highlight)
   (setq ccls-executable "/usr/bin/ccls")
-  (setq ccls-extra-args '("--log-file=/tmp/cq.log"))
-  (setq ccls-extra-init-params
-        '(:completion (:detailedLabel t) :xref (:container t)
-                      :diagnostics (:frequencyMs 5000)))
+  ;;(setq ccls-extra-args '("--log-file=/tmp/cq.log"))
+  (setq ccls-extra-init-params '(
+                                 :completion (:detailedLabel t)
+                                 :diagnostics (:frequencyMs 5000)
+                                 :index (:reparseForDependency 1)))
   (with-eval-after-load 'projectile
     (add-to-list 'projectile-globally-ignored-directories ".ccls-cache"))
   (set-company-backend! '(c-mode c++-mode) '(company-lsp))

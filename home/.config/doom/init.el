@@ -19,9 +19,6 @@
       user-mail-address "xhcoding@163.com")
 
 
-
-
-
 (doom!
  :feature
  eval              ; run code, run (also, repls)
@@ -59,13 +56,15 @@
 
  :tools
  magit
- pdf               ; pdf enhancements
+ ;;pdf               ; pdf enhancements
 
  :lang
  cc                ; C/C++/Obj-C madness
  python            ; beautiful is better than ugly
  emacs-lisp        ; drown in parentheses
- latex            ; writing papers in Emacs has never been so fun
+ (latex            ; writing papers in Emacs has never been so fun
+  +okular
+  )
  (org              ; organize your plain life in plain text
   +attach          ; custom attachment system
   +babel           ; running code in org
