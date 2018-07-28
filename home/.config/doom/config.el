@@ -1,6 +1,8 @@
 ;;; config/private/+ui.el -*- lexical-binding: t; -*-
 (load! "+bindings")
 (load! "+ui")
+(load! "+org")
+
 
 ;; remove doom advice, I don't need deal with comments when newline
 (advice-remove #'newline-and-indent #'doom*newline-and-indent)
@@ -11,15 +13,6 @@
 
 (after! projectile
   (setq projectile-require-project-root t))
-
-
-(after! org
-  (setq org-ellipsis " ▼ "
-        org-ditaa-jar-path doom-etc-dir)
-  (setcar (nthcdr 0 org-emphasis-regexp-components) " \t('\"{[:nonascii:]")
-  (setcar (nthcdr 1 org-emphasis-regexp-components) "- \t.,:!?;'\")}\\[[:nonascii:]")
-  (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
-  (org-element-update-syntax))
 
 (after! company
   (setq company-minimum-prefix-length 2
@@ -79,9 +72,9 @@
   (define-advice show-paren-function (:around (fn) fix-show-paren-function)
     "Highlight enclosing parens"
     (cond ((looking-at-p "\\s(") (funcall fn))
-	        (t (save-excursion
-		           (ignore-errors (backward-up-list))
-		           (funcall fn)))))
+	      (t (save-excursion
+		       (ignore-errors (backward-up-list))
+		       (funcall fn)))))
   (sp-local-pair 'cc-mode "(" nil :actions nil)
   (sp-local-pair 'cc-mode "[" nil :actions nil)
   )
@@ -154,10 +147,11 @@
   (add-hook! :append 'emacs-startup-hook #'openwith-mode)
   )
 
+(def-package! org-edit-latex)
 
 (set-popup-rules!
   '(("^\\*helpful" :size 0.4)
-    ("^\\*info\\*$" :size 0.4)
+    ("^\\*info\\*$" :size 0.8)
     ("^\\*doom \\(?:term\\|eshell\\)" :size 0.4)))
 
 (set-lookup-handlers! 'emacs-lisp-mode :documentation #'helpful-at-point)

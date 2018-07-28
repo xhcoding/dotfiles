@@ -9,10 +9,11 @@
   "Blog's image directory.")
 
 (defvar +my-blog-res-url
-  "http://ivme.xhcoding.cn/")
+  "http://source.xhcoding.cn/")
 
 
 (def-package! org-octopress
+  :load-path (lambda() (concat +my-site-lisp-dir "/org-octopress"))
   :config
   (setq
    org-octopress-directory-top (expand-file-name "source" +my-blog-root-dir)
@@ -30,4 +31,3 @@
 
 
 (advice-add #'org-export-file-uri :before-until #'+my-blog*export-blog-image-url)
-
