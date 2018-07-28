@@ -16,3 +16,4 @@
 
 (package! lsp-javascript :recipe (:fetcher github :repo "emacs-lsp/lsp-javascript") :ignore t)
 
+(package! matlab-mode)

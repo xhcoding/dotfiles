@@ -150,8 +150,9 @@
 (def-package! org-edit-latex)
 
 (set-popup-rules!
-  '(("^\\*helpful" :size 0.4)
-    ("^\\*info\\*$" :size 0.8)
+  '(("^\\*helpful" :size 0.6)
+    ("^\\*info\\*$" :size 0.6)
+    ("^\\*.*Octave\\*$" :size 0.5 :side right)
     ("^\\*doom \\(?:term\\|eshell\\)" :size 0.4)))
 
 (set-lookup-handlers! 'emacs-lisp-mode :documentation #'helpful-at-point)

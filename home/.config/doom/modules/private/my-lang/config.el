@@ -73,3 +73,5 @@
   (set-lookup-handlers! '(c-mode c++-mode java-mode python-mode)
     :definition #'lsp-ui-peek-find-definitions
     :references #'lsp-ui-peek-find-references))
+
+(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
