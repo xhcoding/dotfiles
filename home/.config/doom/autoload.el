@@ -9,8 +9,8 @@
   ;; chinese font
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
-		              charset
-		              (font-spec :family "WenQuanYi Micro Hei Mono" :size 20)))) ;; 14 16 20 22 28
+		                  charset
+		                  (font-spec :family "WenQuanYi Micro Hei Mono" :size 20)))) ;; 14 16 20 22 28
 
 ;;;###autoload
 (defun +my/indent-buffer()
@@ -24,12 +24,12 @@
   (interactive)
   (save-excursion
     (if(region-active-p)
-	    (progn
-	      (indent-region (region-beginning) (region-end))
-	      (message "Indented selected region."))
+	      (progn
+	        (indent-region (region-beginning) (region-end))
+	        (message "Indented selected region."))
       (progn
-	    (+my/indent-buffer)
-	    (message "Indented buffer.")))))
+	      (+my/indent-buffer)
+	      (message "Indented buffer.")))))
 
 ;;;###autoload
 (defun +my/toggle-transparency ()
@@ -54,15 +54,30 @@
     (setq +my-auto-save-timer (auto-save-enable))))
 
 ;; rename this buffer and name
+;;;###autoload
 (defun +my/rename-this-file-and-buffer (new-name)
   "Rename both current buffer and file it's visiting to NEW_NAME"
   (interactive "sNew name: ")
   (let ((name (buffer-name))
-	(filename (buffer-file-name)))
+	      (filename (buffer-file-name)))
     (unless filename
       (error "Buffer '%s' is not visiting a file" name))
     (progn
       (when (file-exists-p filename)
-	(rename-file filename new-name 1))
+	      (rename-file filename new-name 1))
       (set-visited-file-name new-name)
       (rename-buffer new-name))))
+
+
+;;;###autoload
+(defun +my/kill-in-pair()
+  "Kill text in pair"
+  (interactive)
+  (let ((beg (progn (sp-backward-sexp) (point)))
+        (end (progn (backward-char) (sp-forward-sexp) (backward-char) (point))))
+    (kill-region beg end)))
+
+;;;###autoload
+(defun +my/toggle-chrome-play-video()
+  (interactive)
+  (call-process-shell-command "~/Tools/linux-useful-scripts/toggle-chrome-play-video.sh"))

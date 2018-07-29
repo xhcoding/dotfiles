@@ -16,8 +16,6 @@
                    doom-themes
                    )
 
-
-
 (package! gruvbox-theme)
 
 (package! lsp-mode)
@@ -43,3 +41,5 @@
 (package! openwith :ignore t)
 
 (package! org-edit-latex)
+
+(package! isolate :recipe (:fetcher github :repo "casouri/isolate"))

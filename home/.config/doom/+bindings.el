@@ -4,9 +4,11 @@
 
       ;; global keybinds
       :gnvime "<f7>"      #'projectile-compile-project
-      :gnvime "M-g s"     #'up-list
-      :gnvime "M-g S"     #'backward-up-list
+      :gnvime "M-g s"     #'sp-up-sexp
+      :gnvime "M-g S"     #'sp-backward-sexp
+      :gnvime "M-g k"     #'+my/kill-in-pair
       :gnvime "C-k"       #'kill-line
+      :gnvime "M-g b"     #'+my/toggle-chrome-play-video
       :n      "RET"       #'next-buffer
       :n      "M-RET"     #'previous-buffer
       :i      "M-/"       #'+company/complete
@@ -15,9 +17,11 @@
       :i      "M-n"       #'next-line
       :i      "M-p"       #'previous-line
       :i      "C-s"       #'counsel-grep-or-swiper
+      :i      "C-v"       #'yank
       :m      "gb"        #'evil-jump-backward
       :m      "gB"        #'evil-jump-forward
-      :n      "gC"        #'evilnc-comment-or-uncomment-lines
+      :ov     "s"         #'isolate-quick-add
+      :ov     "S"         #'isolate-long-add
 
       (:leader
         (:prefix "o"
@@ -30,4 +34,5 @@
         (:desc "search" :prefix "s"
           :desc "replace"          :n  "r"    #'vr/replace
           :desc "query replace"    :n  "R"    #'vr/query-replace)
-        ))
+        )
+      )

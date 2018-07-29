@@ -72,16 +72,16 @@
   (define-advice show-paren-function (:around (fn) fix-show-paren-function)
     "Highlight enclosing parens"
     (cond ((looking-at-p "\\s(") (funcall fn))
-	      (t (save-excursion
-		       (ignore-errors (backward-up-list))
-		       (funcall fn)))))
+	        (t (save-excursion
+		           (ignore-errors (backward-up-list))
+		           (funcall fn)))))
   (sp-local-pair 'cc-mode "(" nil :actions nil)
   (sp-local-pair 'cc-mode "[" nil :actions nil)
   )
 
 
 (def-package! company-english-helper
-  :load-path +my-site-lisp-dir
+  :load-path (lambda() (concat +my-site-lisp-dir "/english-helper"))
   :config
   (map!
    (:leader
@@ -92,35 +92,6 @@
   :after company
   :hook (company-mode . company-posframe-mode))
 
-
-(defun +advice/xref-set-jump (&rest args)
-  (lsp-ui-peek--with-evil-jumps (evil-set-jump)))
-(advice-add '+lookup/definition :before #'+advice/xref-set-jump)
-(advice-add '+lookup/references :before #'+advice/xref-set-jump)
-
-
-(defvar +my/xref-blacklist nil
-  "List of paths that should not enable xref-find-* or dumb-jump-go")
-
-(after! xref
-  (setq xref-prompt-for-identifier '(not xref-find-definitions
-                                         xref-find-definitions-other-window
-                                         xref-find-definitions-other-frame
-                                         xref-find-references))
-
-  (defun xref--show-xrefs (xrefs display-action &optional always-show-list)
-    (lsp-ui-peek--with-evil-jumps (evil-set-jump))
-
-    (if (not (cdr xrefs))
-        (xref--pop-to-location (car xrefs) display-action)
-      (funcall xref-show-xrefs-function xrefs
-               `((window . ,(selected-window))))
-      ))
-  )
-
-(after! ivy-xref
-  (push '(ivy-xref-show-xrefs . nil) ivy-sort-functions-alist)
-  )
 
 
 (def-package! eaf
@@ -147,7 +118,18 @@
   (add-hook! :append 'emacs-startup-hook #'openwith-mode)
   )
 
-(def-package! org-edit-latex)
+(def-package! isolate
+  :config
+  (add-to-list 'isolate-pair-list
+               '(
+                 (from . "os-\\(.*\\)-")
+                 (to-left . (lambda(from)
+                              (format "#+BEGIN_SRC %s\n" (match-string 1 from))))
+                 (to-right . "\n#+END_SRC\n")
+                 (condition . (lambda (_) (if (equal major-mode 'org-mode) t nil)))
+                 )
+               ))
+
 
 (set-popup-rules!
   '(("^\\*helpful" :size 0.6)
