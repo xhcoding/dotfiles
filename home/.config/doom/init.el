@@ -3,14 +3,15 @@
 ;; 一些目录
 (defvar +my-site-lisp-dir (expand-file-name "~/.config/doom/site-lisp"))
 (defvar +my-yas-snipper-dir (expand-file-name "~/.config/doom/snippets"))
+(defvar +my-org-dir (expand-file-name "~/Documents/Org/"))
 
 (defvar +my-auto-save-timer nil)
 
 
 ;; package archives
-(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-			             ("org"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
+(setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
+                         ("melpa" . "http://elpa.emacs-china.org/melpa/")
+			             ("org"   . "http://elpa.emacs-china.org/org/")))
 
 
 (setq doom-line-numbers-style nil)

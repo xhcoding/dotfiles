@@ -43,3 +43,5 @@
 (package! org-edit-latex)
 
 (package! isolate :recipe (:fetcher github :repo "casouri/isolate"))
+
+(package! yaml-mode)

@@ -15,9 +15,8 @@
         (regexp-quote (expand-file-name +my-blog-root-dir))
         (expand-file-name filename))
        0)
-      (concat  +my-blog-res-url (file-name-nondirectory filename))
+      (concat  +my-blog-res-url (string-trim-left filename +my-blog-img-dir))
     nil))
-
 
 ;; sync images
 (defun +my-blog/sync-blog-img-to-qiniu()

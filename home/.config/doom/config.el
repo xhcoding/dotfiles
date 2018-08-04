@@ -130,7 +130,9 @@
                  )
                ))
 
-
+(def-package! yaml-mode
+  :mode "\\.yml\\'"
+  )
 (set-popup-rules!
   '(("^\\*helpful" :size 0.6)
     ("^\\*info\\*$" :size 0.6)
@@ -138,3 +140,5 @@
     ("^\\*doom \\(?:term\\|eshell\\)" :size 0.4)))
 
 (set-lookup-handlers! 'emacs-lisp-mode :documentation #'helpful-at-point)
+
+(set-company-backend! '(yaml-mode) 'company-dabbrev)

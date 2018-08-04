@@ -74,4 +74,7 @@
     :definition #'lsp-ui-peek-find-definitions
     :references #'lsp-ui-peek-find-references))
 
-(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
+(after! octave
+  (add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
+  )
+
