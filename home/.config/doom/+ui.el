@@ -1,5 +1,6 @@
 ;;; config/private/+ui.el -*- lexical-binding: t; -*-
 
+(setq doom-theme 'doom-tomorrow-night)
 
 ;; font
 (defun +my|init-font(frame)

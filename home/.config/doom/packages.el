@@ -5,12 +5,10 @@
 ;; disable some packages
 (disable-packages! rtags
                    ivy-rtags
-                   doom-themes
                    anaconda-mode
                    company-anaconda
                    )
 
-(package! gruvbox-theme)
 
 (package! lsp-mode)
 (package! lsp-ui)
