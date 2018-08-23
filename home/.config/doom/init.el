@@ -19,6 +19,15 @@
 (setq user-full-name "xhcoding"
       user-mail-address "xhcoding@163.com")
 
+;; if lsp-mode enabled failed ,using irony instead
+(def-package-hook! irony
+  :pre-init
+  nil)
+(def-package-hook! flycheck-irony
+  :pre-init
+  nil
+  :pre-config
+  nil)
 
 (doom!
  :feature
@@ -62,7 +71,8 @@
  ;;pdf               ; pdf enhancements
 
  :lang
- cc                ; C/C++/Obj-C madness
+ (cc                ; C/C++/Obj-C madness
+  +irony)
  python            ; beautiful is better than ugly
  emacs-lisp        ; drown in parentheses
  (latex            ; writing papers in Emacs has never been so fun

@@ -5,7 +5,7 @@
 
 (def-package! ccls
   :init
-  (add-hook! (c-mode c++-mode) #'+my-lang-ccls-enable)
+  (add-hook! (c-mode c++-mode) #'+my-lang-enable-ccls-or-irony)
   :config
   ;; overlay is slow
   ;; Use https://github.com/emacs-mirror/emacs/commits/feature/noverlay
@@ -54,7 +54,7 @@
   (setq lsp-java-server-install-dir
         (expand-file-name (concat doom-etc-dir "eclipse.jdt.ls/server/")))
   (setq lsp-java-workspace-dir
-        (expand-file-name (concat doom-etc-dir "workspace/")))
+        (expand-file-name (concat doom-etc-dir "java/workspace/")))
   )
 
 

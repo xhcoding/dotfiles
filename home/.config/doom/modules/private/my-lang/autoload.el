@@ -1,11 +1,12 @@
 ;;; private/my-lang/autoload.el -*- lexical-binding: t; -*-
 
 ;;;###autoload
-(defun +my-lang-ccls-enable ()
+(defun +my-lang-enable-ccls-or-irony ()
+  "Enable ccls, otherwise enable irony"
   (condition-case nil
       (lsp-ccls-enable)
-    (user-error nil)))
-
+    (user-error
+     (irony-mode +1))))
 
 ;;;###autoload
 (defun ccls/base () (interactive) (lsp-ui-peek-find-custom 'base "$ccls/base"))
@@ -24,6 +25,7 @@
 
 ;;;###autoload
 (defun +my-lang-lsp-java-enable ()
-  (ignore-errors (lsp-java-enable))
+  (let ((lsp-inhibit-message t))
+  (ignore-errors (lsp-java-enable)))
   )
 

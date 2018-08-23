@@ -3,12 +3,7 @@
 
 
 ;; disable some packages
-(disable-packages! irony
-                   irony-eldoc
-                   flycheck-irony
-                   company-irony
-                   company-irony-c-headers
-                   rtags
+(disable-packages! rtags
                    ivy-rtags
                    doom-themes
                    anaconda-mode

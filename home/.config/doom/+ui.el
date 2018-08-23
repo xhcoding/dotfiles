@@ -1,9 +1,5 @@
 ;;; config/private/+ui.el -*- lexical-binding: t; -*-
 
-;; theme
-(def-package! gruvbox-theme
-  :config
-  (setq doom-theme 'gruvbox-dark-hard))
 
 ;; font
 (defun +my|init-font(frame)
