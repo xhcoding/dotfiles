@@ -35,7 +35,9 @@
 (def-package! company-lsp
   :after company
   :init
-  (setq company-lsp-cache-candidates nil))
+  (setq company-lsp-cache-candidates nil)
+  :config
+  (set-company-backend! 'lsp-mode '(company-lsp)))
 
 (def-package! lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -89,6 +91,7 @@
        :n     "e"     #'toggle-company-english-helper))))
 
 (def-package! company-posframe
+  :if (display-graphic-p)
   :after company
   :hook (company-mode . company-posframe-mode))
 
@@ -137,7 +140,8 @@
   '(("^\\*helpful" :size 0.6)
     ("^\\*info\\*$" :size 0.6)
     ("^\\*.*Octave\\*$" :size 0.5 :side right)
-    ("^\\*doom \\(?:term\\|eshell\\)" :size 0.4)))
+    ("^\\*Python*\\*$" :size 0.5 :side right)
+    ("^\\*doom \\(?:term\\|eshell\\)" :size 0.5 :side right)))
 
 (set-lookup-handlers! 'emacs-lisp-mode :documentation #'helpful-at-point)
 

@@ -4,16 +4,14 @@
 
 (package! ccls :recipe (:fetcher github :repo "MaskRay/emacs-ccls"))
 
-(package! google-c-style)
-
 (package! clang-format)
+
+(package! cmake-project :ignore t)
 
 (package! srefactor)
 
-(package! lsp-python :recipe (:fetcher github :repo "emacs-lsp/lsp-python"))
+(package! lsp-python)
 
-(package! lsp-java :recipe (:fetcher github :repo "emacs-lsp/lsp-java"))
-
-(package! lsp-javascript :recipe (:fetcher github :repo "emacs-lsp/lsp-javascript") :ignore t)
+(package! lsp-java )
 
 (package! matlab-mode)

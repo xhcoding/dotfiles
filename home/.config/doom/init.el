@@ -22,6 +22,7 @@
 
 (doom!
  :feature
+ debugger
  eval              ; run code, run (also, repls)
  (evil +everywhere); come to the dark side, we have cookies
  snippets          ; my elves. They type so I don't have to
@@ -52,7 +53,8 @@
 
  :emacs
  dired             ; making dired pretty [functional]
- term              ; terminals in Emacs
+ ;term              ; terminals in Emacs
+ eshell
 
 
  :tools

@@ -3,17 +3,16 @@
 
 
 ;; disable some packages
-(disable-packages! smex
-                   irony
+(disable-packages! irony
                    irony-eldoc
                    flycheck-irony
                    company-irony
                    company-irony-c-headers
                    rtags
                    ivy-rtags
+                   doom-themes
                    anaconda-mode
                    company-anaconda
-                   doom-themes
                    )
 
 (package! gruvbox-theme)

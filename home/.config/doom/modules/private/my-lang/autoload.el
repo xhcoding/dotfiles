@@ -26,3 +26,4 @@
 (defun +my-lang-lsp-java-enable ()
   (ignore-errors (lsp-java-enable))
   )
+

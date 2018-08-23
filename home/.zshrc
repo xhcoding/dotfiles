@@ -96,3 +96,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cmaked="cmake -DCMAKE_BUILD_TYPE=Debug"
 alias cmaker="cmake -DCMAKE_BUILD_TYPE=Release"
+alias es="emacs-26.1 -Q -l /home/xhcoding/.emacs.d.test/init.el"

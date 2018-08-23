@@ -1,12 +1,5 @@
 ;;; private/my-lang/config.el -*- lexical-binding: t; -*-
 
-(def-package! google-c-style
-  :config
-  (add-hook! (c-mode c++-mode) #'google-set-c-style))
-
-(after! cc-mode
-  (add-hook! 'c-mode-common-hook #'flycheck-mode))
-
 (def-package! clang-format
   :commands (clang-format-region))
 
@@ -26,7 +19,6 @@
                                  :index (:reparseForDependency 1)))
   (with-eval-after-load 'projectile
     (add-to-list 'projectile-globally-ignored-directories ".ccls-cache"))
-  (set-company-backend! '(c-mode c++-mode) '(company-lsp))
   )
 
 (after! projectile
@@ -35,13 +27,24 @@
                   ".ccls_root")
                 projectile-project-root-files-top-down-recurring)))
 
+(def-package! cmake-project
+  :load-path +my-site-lisp-dir
+  :config
+  (add-hook! (c-mode c++-mode) #'cp-load-all)
+  (setq cp-default-run-terminal-buffer "*doom eshell*")
+  (map!
+   (:mode (c-mode c++-mode)
+     :gnvime "<f7>" #'cp-cmake-build-project
+     :gnvime "<f8>" #'cp-cmake-run-project-with-args)))
 
 (def-package! lsp-python
   :after python
   :init
   (add-hook! 'python-mode-hook #'lsp-python-enable)
   :config
-  (set-company-backend! 'python-mode '(company-lsp))
+  (map!
+   (:map python-mode-map
+     :gnvime "C-M-\\" #'lsp-format-buffer))
   )
 
 (def-package! lsp-java
@@ -54,14 +57,6 @@
         (expand-file-name (concat doom-etc-dir "workspace/")))
   )
 
-(def-package! lsp-javascript-typescript
-  :disabled t
-  :config
-  (add-hook 'js-mode-hook #'lsp-javascript-typescript-enable)
-  (add-hook 'typescript-mode-hook #'lsp-javascript-typescript-enable) ;; for typescript support
-  (add-hook 'js3-mode-hook #'lsp-javascript-typescript-enable) ;; for js3-mode support
-  (add-hook 'rjsx-mode #'lsp-javascript-typescript-enable) ;; for rjsx-mode support
-  )
 
 (after! latex
   (add-hook 'LaTeX-mode-hook

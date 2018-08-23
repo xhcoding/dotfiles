@@ -3,9 +3,9 @@
 
 (after! org
   (setq org-ellipsis " ▼ "
-        org-ditaa-jar-path doom-etc-dir
         org-image-actual-width '(400)
-        org-agenda-files (list (concat +my-org-dir "notes.org"))
+        org-ditaa-jar-path (concat doom-etc-dir "ditaa.jar")
+        org-agenda-files (list (concat +my-org-dir "gtd.org"))
         )
   (setcar (nthcdr 0 org-emphasis-regexp-components) " \t('\"{[:nonascii:]")
   (setcar (nthcdr 1 org-emphasis-regexp-components) "- \t.,:!?;'\")}\\[[:nonascii:]")
@@ -71,3 +71,4 @@
         org-latex-default-class "ctexart"
         )
   )
+
