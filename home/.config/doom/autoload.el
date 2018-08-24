@@ -16,23 +16,37 @@
     ))
 
 ;;;###autoload
+(defun +my/support-format-p()
+  (and (featurep! :editor format)
+       (memq major-mode '(c-mode c++-mode emacs-lisp-mode java-mode python-mode))))
+
+;;;###autoload
 (defun +my/indent-buffer()
   "Indent the currently visited buffer."
   (interactive)
   (indent-region (point-min) (point-max)))
 
+
 ;;;###autoload
-(defun +my/indent-region-or-buffer()
+(defun +my/indent-region-or-buffer(beg end)
   "Indent a region if selected, otherwise the whole buffer."
-  (interactive)
+  (interactive "r")
   (save-excursion
-    (if(region-active-p)
-	    (progn
-	      (indent-region (region-beginning) (region-end))
-	      (message "Indented selected region."))
+    (if (use-region-p)
+	    (indent-region beg end)
+	  (+my/indent-buffer)
+	  )))
+
+;;;###autoload
+(defun +my/indent-or-format(beg end)
+  (interactive "r")
+  (if (+my/support-format-p)
       (progn
-	    (+my/indent-buffer)
-	    (message "Indented buffer.")))))
+        (+format/region-or-buffer beg end)
+        (message "formated"))
+    (progn
+      (+my/indent-region-or-buffer beg end)
+      (message "indented"))))
 
 ;;;###autoload
 (defun +my/toggle-transparency ()
@@ -94,7 +108,6 @@
 ;;;###autoload
 (defun guess-linux-release(regexp)
   "Guess linux release"
-  (interactive)
   (let ((maybe-get-dis-str (shell-command-to-string "cat /etc/*release")))
     (with-temp-buffer
       (insert maybe-get-dis-str)
@@ -106,11 +119,11 @@
         (search-failed nil)))))
 
 ;;;###autoload
-(defun guess-linux-distribution-family()
+(defun guess-linux-based-distribution()
   "Guess linux distribution family"
-  (guess-linux-release "^ID_LIKE=\"?\\(\\w*\\)"))
+  (guess-linux-release "^ID_LIKE=\"?\\([a-zA-Z ]*\\)\"?$"))
 
 ;;;###autoload
 (defun guess-linux-distribution()
   "Guess linux distribution"
-  (guess-linux-release "^ID=\"?\\(\\w*\\)"))
+  (guess-linux-release "^ID=\"?\\([a-zA-Z ]*\\)\"?$"))

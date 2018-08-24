@@ -1,5 +1,5 @@
 ;;; config/private/+bindings.el -*- lexical-binding: t; -*-
-(map! [remap indent-region] #'+my/indent-region-or-buffer
+(map! [remap indent-region] #'+my/indent-or-format
 
 
       ;; global keybinds
