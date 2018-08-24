@@ -1,5 +1,22 @@
 ;;; private/my-lang/autoload.el -*- lexical-binding: t; -*-
 
+
+;;;###autoload
+(defun +my-lang/cc-newline()
+  "Insert semicolon at end of line, and `newline-and-indent'"
+  (interactive)
+  (end-of-line)
+  (insert ";")
+  (newline-and-indent))
+
+;;;autoload
+(defun +my-lang/cc-jump-out-structure()
+  "Jump out of `{}'"
+  (interactive)
+  (ignore-errors
+    (search-forward "}")))
+
+
 ;;;###autoload
 (defun +my-lang-enable-ccls-or-irony ()
   "Enable ccls, otherwise enable irony"

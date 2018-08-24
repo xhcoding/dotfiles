@@ -11,8 +11,8 @@
         ;; chinese font
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font)
-		                        charset
-		                        (font-spec :family "WenQuanYi Micro Hei Mono" :size 20)))) ;; 14 16 20 22 28
+		                    charset
+		                    (font-spec :family "WenQuanYi Micro Hei Mono" :size 20)))) ;; 14 16 20 22 28
     ))
 
 ;;;###autoload
@@ -27,12 +27,12 @@
   (interactive)
   (save-excursion
     (if(region-active-p)
-	      (progn
-	        (indent-region (region-beginning) (region-end))
-	        (message "Indented selected region."))
+	    (progn
+	      (indent-region (region-beginning) (region-end))
+	      (message "Indented selected region."))
       (progn
-	      (+my/indent-buffer)
-	      (message "Indented buffer.")))))
+	    (+my/indent-buffer)
+	    (message "Indented buffer.")))))
 
 ;;;###autoload
 (defun +my/toggle-transparency ()
@@ -62,12 +62,12 @@
   "Rename both current buffer and file it's visiting to NEW_NAME"
   (interactive "sNew name: ")
   (let ((name (buffer-name))
-	      (filename (buffer-file-name)))
+	    (filename (buffer-file-name)))
     (unless filename
       (error "Buffer '%s' is not visiting a file" name))
     (progn
       (when (file-exists-p filename)
-	      (rename-file filename new-name 1))
+	    (rename-file filename new-name 1))
       (set-visited-file-name new-name)
       (rename-buffer new-name))))
 
@@ -84,3 +84,33 @@
 (defun +my/toggle-chrome-play-video()
   (interactive)
   (call-process-shell-command "~/Tools/linux-useful-scripts/toggle-chrome-play-video.sh"))
+
+;;;autoload
+(defun +my/newline()
+  (interactive)
+  (end-of-line)
+  (newline-and-indent))
+
+;;;###autoload
+(defun guess-linux-release(regexp)
+  "Guess linux release"
+  (interactive)
+  (let ((maybe-get-dis-str (shell-command-to-string "cat /etc/*release")))
+    (with-temp-buffer
+      (insert maybe-get-dis-str)
+      (beginning-of-buffer)
+      (condition-case nil
+          (progn
+            (search-forward-regexp regexp)
+            (downcase (buffer-substring (match-beginning 1) (match-end 1))))
+        (search-failed nil)))))
+
+;;;###autoload
+(defun guess-linux-distribution-family()
+  "Guess linux distribution family"
+  (guess-linux-release "^ID_LIKE=\"?\\(\\w*\\)"))
+
+;;;###autoload
+(defun guess-linux-distribution()
+  "Guess linux distribution"
+  (guess-linux-release "^ID=\"?\\(\\w*\\)"))

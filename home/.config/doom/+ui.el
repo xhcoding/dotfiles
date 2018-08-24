@@ -1,6 +1,11 @@
 ;;; config/private/+ui.el -*- lexical-binding: t; -*-
 
+;; theme
 (setq doom-theme 'doom-tomorrow-night)
+
+;; disabled display line number
+(remove-hook! (prog-mode text-mode conf-mode) #'display-line-numbers-mode)
+
 
 ;; font
 (defun +my|init-font(frame)

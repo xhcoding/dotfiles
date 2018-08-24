@@ -14,7 +14,6 @@
 			             ("org"   . "http://elpa.emacs-china.org/org/")))
 
 
-(setq doom-line-numbers-style nil)
 
 (setq user-full-name "xhcoding"
       user-mail-address "xhcoding@163.com")
@@ -31,7 +30,6 @@
 
 (doom!
  :feature
- debugger
  eval              ; run code, run (also, repls)
  (evil +everywhere); come to the dark side, we have cookies
  snippets          ; my elves. They type so I don't have to
@@ -55,26 +53,33 @@
  hl-todo           ; highlight TODO/FIXME/NOTE tags
  nav-flash         ; blink the current line after jumping
  evil-goggles      ; display visual hints when editing in evil
- (window-select +ace-window)  ; visually switch windows
+ (window-select    ; visually switch windows
+  +ace-window)
  (popup            ; tame sudden yet inevitable temporary windows
   +all             ; catch all popups that start with an asterix
   +defaults)       ; default popup rules
 
+ :editor
+ format            ; automated prettiness
+ multiple-cursors  ; editing in many places at once
+
  :emacs
  dired             ; making dired pretty [functional]
- ;term              ; terminals in Emacs
- eshell
-
+ ediff             ; comparing files in Emacs
+ eshell            ; a consistent, cross-platform shell (WIP)
+ hideshow          ; basic code-folding support
+ imenu             ; an imenu sidebar and searchable code index
+ vc                ; version-control and Emacs, sitting in a tree
 
  :tools
  magit
- ;;pdf               ; pdf enhancements
 
  :lang
- (cc                ; C/C++/Obj-C madness
+ (cc               ; C/C++/Obj-C madness
   +irony)
- python            ; beautiful is better than ugly
+ data              ; config/data formats
  emacs-lisp        ; drown in parentheses
+ java              ; the poster child for carpal tunnel syndrome
  (latex            ; writing papers in Emacs has never been so fun
   +okular
   )
@@ -84,12 +89,13 @@
   +capture         ; org-capture in and outside of Emacs
   +export          ; Exporting org to whatever you want
   +present         ; Emacs for presentations
-  +publish)        ; Emacs+Org as a static site generator
+  )
  plantuml          ; diagrams for confusing people more
- web
+ python            ; beautiful is better than ugly
 
  :app
- rss               ; emacs as an RSS reader
+
+ :collab
 
  :config
  ;; The default module set reasonable defaults for Emacs. It also provides

@@ -37,7 +37,7 @@
   :init
   (setq company-lsp-cache-candidates nil)
   :config
-  (set-company-backend! 'lsp-mode '(company-lsp)))
+  (set-company-backend! 'lsp-mode 'company-lsp))
 
 (def-package! lsp-ui
   :hook (lsp-mode . lsp-ui-mode)

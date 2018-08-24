@@ -1,7 +1,32 @@
 ;;; private/my-lang/config.el -*- lexical-binding: t; -*-
 
-(def-package! clang-format
-  :commands (clang-format-region))
+
+(after! cc-mode
+  (defun llvm-lineup-statement (langelem)
+    (let ((in-assign (c-lineup-assignments langelem)))
+      (if (not in-assign)
+          '++
+        (aset in-assign 0
+              (+ (aref in-assign 0)
+                 (* 2 c-basic-offset)))
+        in-assign)))
+
+  ;; Add a cc-mode style for editing LLVM C and C++ code
+  (c-add-style "llvm.org"
+               '("gnu"
+	             (fill-column . 80)
+	             (c++-indent-level . 2)
+	             (c-basic-offset . 2)
+	             (indent-tabs-mode . nil)
+	             (c-offsets-alist . ((arglist-intro . ++)
+				                     (innamespace . 0)
+				                     (member-init-intro . ++)
+				                     (statement-cont . llvm-lineup-statement)))))
+  (setq-default c-default-style "llvm.org")
+  (map!
+   (:map c-mode-base-map
+     :i "C-j" #'+my-lang/cc-newline
+     :i "M-j" #'+my-lang/cc-jump-out-structure)))
 
 (def-package! ccls
   :init
@@ -72,4 +97,3 @@
 (after! octave
   (add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
   )
-
