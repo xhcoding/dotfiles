@@ -1,7 +1,8 @@
 ;;; config/private/+ui.el -*- lexical-binding: t; -*-
 
 ;; theme
-(setq doom-theme 'doom-tomorrow-night)
+(defvar +my-themes '(doom-one doom-one-light doom-dracula))
+
 
 ;; disabled display line number
 (remove-hook! (prog-mode text-mode conf-mode) #'display-line-numbers-mode)
@@ -16,3 +17,4 @@
 (if (and (fboundp 'daemonp) (daemonp))
     (add-hook 'after-make-frame-functions #'+my|init-font)
   (+my/better-font))
+

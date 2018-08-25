@@ -4,6 +4,8 @@
 
 (package! ccls :recipe (:fetcher github :repo "MaskRay/emacs-ccls"))
 
+(package! google-c-style)
+
 (package! cmake-project :ignore t)
 
 (package! srefactor)

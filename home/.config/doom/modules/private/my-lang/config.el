@@ -1,28 +1,11 @@
 ;;; private/my-lang/config.el -*- lexical-binding: t; -*-
 
+(setq-default c-basic-offset 2)
+(def-package! google-c-style
+  :config
+  (add-hook! (c-mode c++-mode) #'google-set-c-style))
 
 (after! cc-mode
-  (defun llvm-lineup-statement (langelem)
-    (let ((in-assign (c-lineup-assignments langelem)))
-      (if (not in-assign)
-          '++
-        (aset in-assign 0
-              (+ (aref in-assign 0)
-                 (* 2 c-basic-offset)))
-        in-assign)))
-
-  ;; Add a cc-mode style for editing LLVM C and C++ code
-  (c-add-style "llvm.org"
-               '("gnu"
-	             (fill-column . 80)
-	             (c++-indent-level . 2)
-	             (c-basic-offset . 2)
-	             (indent-tabs-mode . nil)
-	             (c-offsets-alist . ((arglist-intro . ++)
-				                     (innamespace . 0)
-				                     (member-init-intro . ++)
-				                     (statement-cont . llvm-lineup-statement)))))
-  (setq-default c-default-style "llvm.org")
   (map!
    (:map c-mode-base-map
      :i "C-j" #'+my-lang/cc-newline

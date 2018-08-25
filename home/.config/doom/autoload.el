@@ -16,6 +16,18 @@
     ))
 
 ;;;###autoload
+(defun +my/toggle-cycle-theme ()
+  "Cycle through themes defined in `+my-themes.'"
+  (interactive)
+  (when doom-theme
+    ;; if current theme isn't in cycleable themes, start over
+    (setq +my--cycle-themes
+          (or (cdr (memq doom-theme +my-themes))
+              +my-themes)))
+  (setq doom-theme (pop +my--cycle-themes))
+  (doom/reload-theme))
+
+;;;###autoload
 (defun +my/support-format-p()
   (and (featurep! :editor format)
        (memq major-mode '(c-mode c++-mode emacs-lisp-mode java-mode python-mode))))

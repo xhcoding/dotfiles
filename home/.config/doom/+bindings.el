@@ -28,9 +28,10 @@
         (:prefix "o"
           :desc "agenda"           :n  "a"    #'org-agenda)
         (:desc "toggle" :prefix "t"
-          :desc "Transparency"     :n  "t"    #'+my/toggle-transparency
+          :desc "Transparency"     :n  "T"    #'+my/toggle-transparency
           :desc "Auto save"        :n  "a"    #'+my/toggle-auto-save
           :desc "Comment "         :n  "c"    #'comment-line
+          :desc "Cycle theme"      :n   "t"    #'+my/toggle-cycle-theme
           )
         (:desc "search" :prefix "s"
           :desc "replace"          :n  "r"    #'vr/replace
