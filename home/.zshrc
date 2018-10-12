@@ -98,3 +98,9 @@ source $ZSH/oh-my-zsh.sh
 alias cmaked="cmake -DCMAKE_BUILD_TYPE=Debug"
 alias cmaker="cmake -DCMAKE_BUILD_TYPE=Release"
 alias es="emacs-26.1 -Q -l /home/xhcoding/.emacs.d.test/init.el"
+
+#alias for cnpm
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
+  --cache=$HOME/.npm/.cache/cnpm \
+  --disturl=https://npm.taobao.org/dist \
+  --userconfig=$HOME/.cnpmrc"
