@@ -25,7 +25,7 @@ set $mod Mod4
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono Bold 10
 
-# new_window 1pixel
+new_window 1pixel
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -116,10 +116,10 @@ set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8:Chrome"
-set $ws9 "9:Terminal"
-set $ws10 "0:Emacs"
+set $ws7 "music"
+set $ws8 "web"
+set $ws9 "term"
+set $ws10 "code"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
