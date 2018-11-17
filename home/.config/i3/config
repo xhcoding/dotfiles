@@ -110,7 +110,7 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
+set $ws1 "music"
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
@@ -156,6 +156,8 @@ assign [class="Termite"] $ws9
 for_window [class="Termite"] focus
 assign [class="Emacs"] $ws10
 for_window [class="Emacs"] focus
+assign [class="netease-cloud-music"] $ws1
+for_window [class="netease-cloud-music"] focus
 
 
 # reload the configuration file

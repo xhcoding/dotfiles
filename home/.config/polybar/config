@@ -167,7 +167,7 @@ index-sort = true
 ws-icon-0 = term;
 ws-icon-1 = web;
 ws-icon-2 = code;
-ws-icon-3 = music;
+ws-icon-3 = music;
 ws-icon-default = 
 
 ; focused = Active workspace on focused monitor
