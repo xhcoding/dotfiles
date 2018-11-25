@@ -1,5 +1,0 @@
-!! rxvt-unicode
-#include ".Xresources.d/rxvt-unicode"
-
-Xcursor.theme: Numix
-
