@@ -5,9 +5,7 @@
 # Copyright (C) 2018, xhcoding, all right reserved
 # Created: 2018-11-24 21:00
 # Version: 0.1
-# Last-Update: 2018-11-25 21:00 by xhcoding
-#
-# Change log:
+# Last-Update: 2018-11-25 21:00 by xhcoding # # Change log:
 # 2018-11-24
 #       * first commit 
 #
@@ -231,6 +229,11 @@ function display_usage {
     echo "2. install_etc(root): install system etc config."
     echo "3. install_emacs: install emacs config."
     echo "4. install_package(root): install package in arch-package.list ."
+}
+
+function install_grub {
+    grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch
+    grub-mkconfig -o /boot/grub/grub.cfg
 }
 
 if [ "$1" == "-h" -o "$1" == "--help" ] ; then
