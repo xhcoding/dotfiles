@@ -29,6 +29,11 @@ font-2 = Weather Icons:size=12;1
 font-3 = FontAwesome:size=10;1
 font-4 = Noto Sans CJK SC:style=Bold:pixelsize=10;0
 
+tray-position = left
+
+
+tray-maxsize = 16
+
 modules-left = i3 player-mpris-simple
 modules-center =
 modules-right = pulseaudio xbacklight cpu memory wired-network wireless-network  battery openweathermap-simple date powermenu

@@ -185,6 +185,24 @@ function install_config {
     info "config install finished"
 }
 
+function update_config {
+    local dotconfig_dir="$DOTFILES_ROOT/.config"
+    local homeconfig_dir="$DOTFILES_ROOT/home"
+    
+    info "update personal config"
+    pacman -Q | sed 's/\([-a-zA-Z0-9]\) .*/\1/g' > arch-package.list
+    for filename in $(ls -A $dotconfig_dir); do
+            copy_file "$HOME/.config/$filename"  "$dotconfig_dir/$filename" b
+            success "updated $filename"
+    done
+    for filename in $(ls -A $homeconfig_dir); do
+        copy_file "$HOME/$filename" "$homeconfig_dir/$filename" b
+        success "update $filename"
+    done
+   
+    info "update finished"
+}
+
 
 function install_etc {
     local etcconfig_dir="$DOTFILES_ROOT/etc"
@@ -226,6 +244,7 @@ function display_usage {
     echo "./bootstrap.sh -f function [args]"
     echo "functions:  "
     echo "1. install_config: install personal config."
+    echo "1. update_config: update personal config."
     echo "2. install_etc(root): install system etc config."
     echo "3. install_emacs: install emacs config."
     echo "4. install_package(root): install package in arch-package.list ."
