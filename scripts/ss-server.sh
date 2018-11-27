@@ -136,7 +136,7 @@ function install_shadowsocks {
     fi
     msg "相关软件安装完成"
     config_shadowsocks
-    config_firewall
+    config_firewall $server_port
     return 0
 }
 
@@ -222,6 +222,7 @@ function config_shadowsocks {
     printf "}\n" >> $CONFIG_FILE
     
     msg "配置成功，配置文件位置: $(cd $(dirname $CONFIG_FILE); pwd)/$(basename $CONFIG_FILE)"
+    
 }
 
 function start_shadowsocks {
