@@ -114,18 +114,22 @@ function install_shadowsocks {
         case $DISTRO in
             CentOS) 
                 if grep -Eqi "7\." /etc/*-release; then
+                    install_package $PM "git"
                     install_package $PM "libsodium"
                     install_package $PM "python34-pip"
                     install_package "pip3" "git+https://github.com/shadowsocks/shadowsocks.git@master"
                 else
+                    install_package $PM "git"
                     install_package $PM "python-setuptools"
                     easy_install pip
                     install_package "pip" "git+https://github.com/shadowsocks/shadowsocks.git@master"
                 fi ;;
             Debian|Ubuntu )
+                install_package $PM "git"
                 install_package $PM python-pip
                 install_package "pip" "git+https://github.com/shadowsocks/shadowsocks.git@master";;
             Arch)
+                install_package $PM "git"
                 install_package $PM "python-pip"
                 install_package "pip" "git+https://github.com/shadowsocks/shadowsocks.git@master";;
         esac
