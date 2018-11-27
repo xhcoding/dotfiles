@@ -1,8 +1,3 @@
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-endif
-
-
 " 插件管理
 " 指定插件的目录
 call plug#begin('~/.local/share/nvim/plugged')

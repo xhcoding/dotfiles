@@ -68,7 +68,7 @@ double-conversion
 e2fsprogs
 efibootmgr
 efivar
-emacs-git
+emacs
 exempi
 expac
 expat
@@ -86,6 +86,7 @@ ffmpeg
 fftw
 file
 filesystem
+filezilla
 findutils
 flac
 flex
@@ -100,6 +101,7 @@ gcc
 gcc-libs
 gconf
 gcr
+gd
 gdbm
 gdk-pixbuf2
 gettext
@@ -109,6 +111,7 @@ glib-networking
 glib2
 glibc
 glslang
+glu
 gmp
 gnome-themes-extra
 gnupg
@@ -117,6 +120,7 @@ google-chrome
 gpgme
 gpm
 gptfdisk
+gradle
 graphene
 graphite
 grep
@@ -215,6 +219,7 @@ libev
 libevdev
 libexif
 libffi
+libfilezilla
 libfontenc
 libgcrypt
 libglvnd
@@ -237,6 +242,7 @@ liblouis
 liblqr
 libmad
 libmagick
+libmagick6
 libmatroska
 libmm-glib
 libmng
@@ -355,6 +361,8 @@ lvm2
 lxappearance
 lz4
 lzo
+m17n-db
+m17n-lib
 m4
 make
 man-db
@@ -418,6 +426,7 @@ polybar
 poppler
 popt
 procps-ng
+proxychains-ng
 psmisc
 pulseaudio
 pulseaudio-alsa
@@ -466,6 +475,7 @@ readline
 reiserfsprogs
 rest
 rhash
+ripgrep
 rofi
 rtkit
 run-parts
@@ -496,6 +506,7 @@ termite-terminfo
 texinfo
 thin-provisioning-tools
 tslib
+ttf-wps-fonts
 twolame
 tzdata
 udisks2
@@ -519,8 +530,12 @@ wget
 which
 wireless_tools
 wpa_supplicant
+wps-office
 wqy-microhei
 wqy-microhei-lite
+wqy-zenhei
+wxgtk-common
+wxgtk3
 x264
 x265
 xapps

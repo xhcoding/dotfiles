@@ -5,7 +5,9 @@
 # Copyright (C) 2018, xhcoding, all right reserved
 # Created: 2018-11-24 21:00
 # Version: 0.1
-# Last-Update: 2018-11-25 21:00 by xhcoding # # Change log:
+# Last-Update: 2018-11-25 21:00 by xhcoding
+#
+# Change log:
 # 2018-11-24
 #       * first commit 
 #
@@ -192,11 +194,11 @@ function update_config {
     info "update personal config"
     pacman -Q | sed 's/\([-a-zA-Z0-9]\) .*/\1/g' > arch-package.list
     for filename in $(ls -A $dotconfig_dir); do
-            copy_file "$HOME/.config/$filename"  "$dotconfig_dir/$filename" b
+            copy_file "$HOME/.config/$filename"  "$dotconfig_dir/$filename" o
             success "updated $filename"
     done
     for filename in $(ls -A $homeconfig_dir); do
-        copy_file "$HOME/$filename" "$homeconfig_dir/$filename" b
+        copy_file "$HOME/$filename" "$homeconfig_dir/$filename" o
         success "update $filename"
     done
    
