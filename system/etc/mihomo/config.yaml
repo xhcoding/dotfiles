@@ -1,0 +1,303 @@
+### 全局配置
+
+# http 和 socks 混合端口
+mixed-port: 7890
+
+# 关闭 IPv6
+ipv6: false
+
+# 开启时允许局域网允许其他设备通过Clash代理端口访问互联网，一般用于路由器中
+# 单机使用，因此关闭
+allow-lan: false
+
+# 激活时进行两次延迟测试以消除由连接握手和不同类型节点中的其他变化引起的延迟差异。
+unified-delay: true
+
+# 启用 TCP 并发连接，这将使用 DNS 解析的所有 IP 地址进行连接，并使用第一个成功的连接。
+tcp-concurrent: true
+
+# 日志等级
+log-level: warning
+
+# web ui 配置
+external-controller: 0.0.0.0:9090
+external-ui: ui
+external-ui-url: "https://hub.mirrors.2020818.xyz/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+
+# 匹配进程模式
+find-process-mode: strict
+
+# 策略组选择和 fake-ip 持久化
+profile:
+  store-selected: true
+  store-fake-ip: false
+
+### 域名嗅探
+### 网络请求的目标地址不是域名（例如是 IP 地址）时，
+### 仍能根据数据包中的特征（如 TLS 的 SNI（Server Name Indication）字段、HTTP 请求的 Host 头、或 DNS 查询应答）
+### 来反向推断出真实的域名，从而让代理规则能够正确匹配。
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain: # 跳过嗅探的域名列表
+    - "Mijia Cloud"
+  skip-src-address: # 跳过嗅探的源 ip
+    - 10.0.0.0/8
+  skip-dst-address: # 跳过嗅探的目的 ip
+    - 10.0.0.0/8
+
+# tun 配置
+tun:
+  enable: true
+  stack: system
+  device: mihomo # 设备名称
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+    - "any:853"
+    - "tcp://any:853"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+  strict-route: true
+  route-exclude-address: # 排除自定义网段
+    - "192.168.0.0/16"  # 覆盖 192.168.0.0 - 192.168.255.255
+
+# dns 配置
+dns:
+  enable: true
+  prefer-h3: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - "+.m2m"
+    - "injections.adguard.org"
+    - "local.adguard.org"
+    - "+.bogon"
+    - "+.local"
+    - "+.lan"
+    - "+.internal"
+    - "+.localdomain"
+    - "home.arpa"
+    - "dns.msftncsi.com"
+    - "*.srv.nintendo.net"
+    - "*.stun.playstation.net"
+    - "xbox.*.microsoft.com"
+    - "*.xboxlive.com"
+    - "*.turn.twilio.com"
+    - "*.stun.twilio.com"
+    - "stun.syncthing.net"
+    - "stun.*"
+    - "lancache.steamcontent.com"
+  nameserver:
+    - https://223.5.5.5/dns-query
+    - https://doh.pub/dns-query
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query
+    - https://doh.pub/dns-query
+
+
+# 订阅配置
+### 订阅基础配置 [每天更新一次订阅节点，每 300 秒一次健康检查]
+NodeParam: &NodeParam {type: http, interval: 86400, health-check: {enable: true, url: 'http://connectivitycheck.platform.hicloud.com/generate_204', interval: 300}}
+
+# 过滤器
+FilterUsage: &FilterUsage '(有效期|剩余)'
+
+proxy-providers:
+  Shadowsocks:
+    url: '${MIHOMO_SUBSCRIBE_URL}'
+    <<: *NodeParam
+    path: './proxy_provider/providers.yaml'
+
+# 策略组
+proxy-groups:
+  -
+    name: Proxy
+    type: url-test
+    disable-udp: false
+    include-all: true
+    exclude-filter: *FilterUsage
+  -
+    name: Usage
+    type: select
+    include-all: true
+    filter: *FilterUsage
+    
+
+# ── 规则集锚点 ─────────────────────────────────────────────────
+rs_classical: &rs_classical { type: http, behavior: classical, interval: 43200, format: text }
+rs_domain:    &rs_domain    { type: http, behavior: domain,    interval: 43200, format: text }
+rs_ipcidr:    &rs_ipcidr    { type: http, behavior: ipcidr,    interval: 43200, format: text }
+# 如果使用 MetaCubeX 官方的 .mrs 格式（更快更小）：
+rs_mrs:       &rs_mrs       { type: http, behavior: domain,    interval: 86400, format: mrs }
+
+rule-providers:
+  # ── 非 IP 类：广告拦截 ────────────────────────────────────────
+  reject_non_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/non_ip/reject.txt"
+    path: ./rule_set/reject_non_ip.txt
+
+  reject_non_ip_drop:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/non_ip/reject-drop.txt"
+    path: ./rule_set/reject_non_ip_drop.txt
+
+  reject_domainset:
+    <<: *rs_domain
+    url: "https://ruleset.skk.moe/Clash/domainset/reject.txt"
+    path: ./rule_set/reject_domainset.txt
+
+  # ── 非 IP 类：AI 服务 ─────────────────────────────────────────
+  ai_non_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/non_ip/ai.txt"
+    path: ./rule_set/ai_non_ip.txt
+
+  # ── 非 IP 类：电报 ────────────────────────────────────────────
+  telegram_non_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/non_ip/telegram.txt"
+    path: ./rule_set/telegram_non_ip.txt
+
+  # ── 非 IP 类：流媒体 ──────────────────────────────────────────
+  stream_non_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/non_ip/stream.txt"
+    path: ./rule_set/stream_non_ip.txt
+
+  # ── 非 IP 类：苹果、微软 ──────────────────────────────────────
+  apple_cdn:
+    <<: *rs_domain
+    url: "https://ruleset.skk.moe/Clash/domainset/apple_cdn.txt"
+    path: ./rule_set/apple_cdn.txt
+
+  apple_services:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/non_ip/apple_services.txt"
+    path: ./rule_set/apple_services.txt
+
+  apple_cn_non_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/non_ip/apple_cn.txt"
+    path: ./rule_set/apple_cn_non_ip.txt
+
+  microsoft_cdn_non_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/non_ip/microsoft_cdn.txt"
+    path: ./rule_set/microsoft_cdn_non_ip.txt
+
+  microsoft_non_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/non_ip/microsoft.txt"
+    path: ./rule_set/microsoft_non_ip.txt
+
+  # ── 非 IP 类：国内/国外/直连 ──────────────────────────────────
+  global_non_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/non_ip/global.txt"
+    path: ./rule_set/global_non_ip.txt
+
+  domestic_non_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/non_ip/domestic.txt"
+    path: ./rule_set/domestic_non_ip.txt
+
+  direct_non_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/non_ip/direct.txt"
+    path: ./rule_set/direct_non_ip.txt
+
+  lan_non_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/non_ip/lan.txt"
+    path: ./rule_set/lan_non_ip.txt
+
+  # ── IP 类规则（放在最后匹配）──────────────────────────────────
+  reject_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/ip/reject.txt"
+    path: ./rule_set/reject_ip.txt
+
+  telegram_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/ip/telegram.txt"
+    path: ./rule_set/telegram_ip.txt
+
+  stream_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/ip/stream.txt"
+    path: ./rule_set/stream_ip.txt
+
+  domestic_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/ip/domestic.txt"
+    path: ./rule_set/domestic_ip.txt
+
+  lan_ip:
+    <<: *rs_classical
+    url: "https://ruleset.skk.moe/Clash/ip/lan.txt"
+    path: ./rule_set/lan_ip.txt
+
+  china_ip:
+    <<: *rs_ipcidr
+    url: "https://ruleset.skk.moe/Clash/ip/china_ip.txt"
+    path: ./rule_set/china_ip.txt
+
+# 分流规则
+rules:
+  # ════ 非 IP 类规则 ════════════════════════════════════════════
+
+  # 广告拦截（最优先）
+  - RULE-SET,reject_non_ip,REJECT
+  - RULE-SET,reject_domainset,REJECT
+  - RULE-SET,reject_non_ip_drop,REJECT-DROP   # 静默丢弃，防止某些探测
+
+  # AI 服务
+  - RULE-SET,ai_non_ip,Proxy
+
+  # 电报
+  - RULE-SET,telegram_non_ip,Proxy
+
+  # 流媒体
+  - RULE-SET,stream_non_ip,Proxy
+
+  # 苹果（CDN 直连，服务走苹果组，国内苹果直连）
+  - RULE-SET,apple_cdn,DIRECT
+  - RULE-SET,apple_cn_non_ip,DIRECT
+  - RULE-SET,apple_services,Proxy
+
+  # 微软（CDN 直连，服务走微软组）
+  - RULE-SET,microsoft_cdn_non_ip,DIRECT
+  - RULE-SET,microsoft_non_ip,Proxy
+
+  # 国外流量走代理
+  - RULE-SET,global_non_ip,Proxy
+
+  # 国内 / 直连
+  - RULE-SET,domestic_non_ip,DIRECT
+  - RULE-SET,direct_non_ip,DIRECT
+  - RULE-SET,lan_non_ip,DIRECT
+
+  # ════ IP 类规则（会触发 DNS 解析，务必放在域名规则后面）═════
+
+  - RULE-SET,reject_ip,REJECT
+  - RULE-SET,telegram_ip,Proxy
+  - RULE-SET,stream_ip,Proxy
+  - RULE-SET,lan_ip,DIRECT
+  - RULE-SET,domestic_ip,DIRECT
+  - RULE-SET,china_ip,DIRECT
+
+  # ════ 兜底 ═══════════════════════════════════════════════════
+  - MATCH,DIRECT

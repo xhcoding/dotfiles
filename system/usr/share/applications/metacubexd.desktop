@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=metacubexd
+Comment=Open Mihomo Web UI (metacubexd)
+Exec=xdg-open http://127.0.0.1:9090/ui
+Icon=metacubexd
+Categories=Network;
+StartupNotify=true

@@ -1,0 +1,9 @@
+# Condition  File Regex	Variable Name	Replacement Value
+
+# Condition:  a shell function that returns true to satisfy the condition, false otherwise. Default is true, meaning always satisfied
+# File Regex:  a regular expression used to match files to be replaced
+# Variable Name:  the variable name in the replacement value, used to reference variables in the configuration file
+# Replacement Value:  the actual string to be replaced
+
+# mihomo subscription URL
+true mihomo/config.yaml MIHOMO_SUBSCRIBE_URL YOUR_SUBSCRIBE_URL
