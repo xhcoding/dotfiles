@@ -116,7 +116,7 @@ function install_zoxide() {
     log_info_color "Installing zoxide tool..."
     
     log_debug "Downloading and executing zoxide installation script..."
-    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh -s -- -y
+    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
     
     if command -v zoxide &> /dev/null; then
         log_info_color "zoxide installation completed!"
@@ -208,7 +208,7 @@ function main() {
     local ubuntu_version
     local ubuntu_codename
     local arch
-    read -r ubuntu_version ubuntu_codename arch <<< "$(check_system_info)"
+    read -r ubuntu_version ubuntu_codename arch <<< "$(check_system_info | tail -n1)"
     
     backup_sources_list
     update_sources_list "${ubuntu_codename}" "${arch}"
