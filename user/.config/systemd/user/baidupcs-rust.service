@@ -1,0 +1,12 @@
+[Unit]
+Description=Baidu Netdisk Rust Client
+After=network.target
+
+[Service]
+ExecStart=%h/baidupcs-rust/baidu-netdisk-rust
+Restart=on-failure
+RestartSec=5
+WorkingDirectory=%h/baidupcs-rust
+
+[Install]
+WantedBy=default.target
